@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RODB Delivery Panel</string>
+    <string name="app_name_uat">RODB Delivery Panel UAT</string>
+</resources>
