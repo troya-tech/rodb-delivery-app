@@ -15,12 +15,14 @@ import 'package:flutter/foundation.dart'
 /// );
 /// ```
 class DefaultFirebaseOptions {
+  /// Web Client ID (client_type: 3) from google-services.json
+  /// Used as serverClientId for Google Sign-In
+  static const String webClientId =
+      '695787289329-r5lmh0rgl7ma94f02gn3it354r70pd81.apps.googleusercontent.com';
+
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -51,6 +53,17 @@ class DefaultFirebaseOptions {
         );
     }
   }
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyA_iJsooH7Iy8f0Oe5iX3FvEWnsuqsxY9o',
+    appId: '1:695787289329:web:71cb7886b453264f9c8750',
+    messagingSenderId: '695787289329',
+    projectId: 'js-test-e5720',
+    authDomain: 'js-test-e5720.firebaseapp.com',
+    databaseURL: 'https://js-test-e5720.firebaseio.com',
+    storageBucket: 'js-test-e5720.appspot.com',
+    measurementId: 'G-6R30R6JYW6',
+  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDaiy0SmZPP4fxprzfBj818OwRfwI6lcSA',

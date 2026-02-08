@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rodb_delivery_app/app/pages/auth-gate-page/auth_gate_page.dart';
 import 'firebase_options_prod.dart' as firebase_prod;
 import 'firebase_options_uat.dart' as firebase_uat;
@@ -10,12 +11,18 @@ const String environment = String.fromEnvironment('ENV', defaultValue: 'uat');
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Select Options based on ENV
-  final firebaseOptions = environment == 'prod'
+  // Select environment config
+  final isProd = environment == 'prod';
+  final firebaseOptions = isProd
       ? firebase_prod.DefaultFirebaseOptions.currentPlatform
       : firebase_uat.DefaultFirebaseOptions.currentPlatform;
+  final webClientId = isProd
+      ? firebase_prod.DefaultFirebaseOptions.webClientId
+      : firebase_uat.DefaultFirebaseOptions.webClientId;
 
   await Firebase.initializeApp(options: firebaseOptions);
+  await GoogleSignIn.instance.initialize(serverClientId: webClientId);
+
   runApp(const ProviderScope(child: MyApp()));
 }
 

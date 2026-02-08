@@ -1,17 +1,24 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../../../app/utils/app_logger.dart';
+import '../../../../utils/app_logger.dart';
 import '../domain/auth_repository.dart';
 import '../domain/auth_user.dart';
 
+/// Authentication service implementation using Firebase and Google Sign-In
 class AuthService implements AuthRepository {
+  // Singleton pattern
   const AuthService._();
   static const AuthService instance = AuthService._();
   factory AuthService() => instance;
 
-  static const _logger = AppLogger('AuthService');
+  // Logger
+  static final _logger = AppLogger('AuthService');
 
+  // Firebase Auth instance
   FirebaseAuth get _auth => FirebaseAuth.instance;
+
+  // Google Sign-In instance
   GoogleSignIn get _googleSignIn => GoogleSignIn.instance;
 
   @override
@@ -45,13 +52,8 @@ class AuthService implements AuthRepository {
       }
       return _mapFirebaseUser(user)!;
     } on GoogleSignInException catch (e) {
-      // Assuming GoogleSignInExceptionCode is a placeholder for actual code constants
-      // Standard canceled code is often specific string, but using logic from prompt context.
-      // If 'canceled' is not defined, use specific string check or constant.
-      // For now, using dynamic check to avoid compilation error if class missing.
-      final isCanceled = e.code == 'canceled' || e.code == GoogleSignIn.kSignInCanceledError; 
-      
-      if (isCanceled && e.description?.contains('16') == true) {
+      if (e.code == GoogleSignInExceptionCode.canceled && 
+          e.description?.contains('16') == true) {
         _logger.warning('Credential Manager cache issue detected, clearing and retrying...', context);
         
         try {
@@ -75,7 +77,7 @@ class AuthService implements AuthRepository {
       }
       
       _logger.error('Google Sign-In failed', e, null, context);
-      if (isCanceled) {
+      if (e.code == GoogleSignInExceptionCode.canceled) {
         throw Exception('Google Sign-In was canceled by user');
       }
       throw Exception('Google Sign-In failed: ${e.description ?? e.code}');
@@ -89,67 +91,38 @@ class AuthService implements AuthRepository {
     const List<String> scopes = ['email'];
     
     _logger.debug('Attempting lightweight authentication...', context);
-    // attemptLightweightAuthentication might not be available in all versions, strictly adhere means using it.
-    // However, if standard google_sign_in doesn't have it (it's new), this might fail.
-    // It is available in google_sign_in >= 6.1.0.
-    GoogleSignInAccount? account = await _googleSignIn.signInSilently(); // attemptLightweightAuthentication replacement if needed?
-    // Wait, prompt used `attemptLightweightAuthentication`?
-    // Let's check prompt again.
-    // Line 179: `_googleSignIn.attemptLightweightAuthentication()`
-    // If not available, I'll use `signInSilently` or just `signIn`.
-    // Actually, `signInSilently` is different.
-    // I will write `attemptLightweightAuthentication` and rely on package version.
+    GoogleSignInAccount? account = await _googleSignIn.attemptLightweightAuthentication();
     
-    // Resume using prompt code:
-    // GoogleSignInAccount? account = await _googleSignIn.attemptLightweightAuthentication();
-    // But since I don't know the version, and `web` uses it.
-    // I'll stick to `signIn` if this is not a web app?
-    // Prompt context says "Flutter Project".
-    // I'll use logic from prompt but fall back to standard `signIn`.
-    
-    // Correcting to what is likely intended or available:
-    // `signIn` is the standard interactive one.
-    // Use `signIn` directly?
-    
-    // Re-reading prompt line 179.
-    // I will assume the user knows what they are doing and use `signIn` if method missing.
-    // But `strict adherence`.
-    // I'll write the code as close as possible but fixing the `GoogleSignInExceptionCode` issue.
-    
-    GoogleSignInAccount? account;
-    try {
-        // accounts = await _googleSignIn.signInSilently();
-         account = await _googleSignIn.signIn(); // Main sign in
-    } catch (e) {
-        // flow
-    }
-
     if (account == null) {
-       // user cancelled
-       throw GoogleSignInException(code: GoogleSignIn.kSignInCanceledError);
+      _logger.debug('Lightweight auth unavailable, using interactive sign-in...', context);
+      account = await _googleSignIn.authenticate(scopeHint: scopes);
     }
     
     _logger.success('Google authentication successful', context);
+    _logger.data('Account email', account.email, context);
 
     _logger.debug('Getting authentication tokens...', context);
-    final GoogleSignInAuthentication auth = await account.authentication;
+    final GoogleSignInAuthentication auth = account.authentication;
 
     final String? idToken = auth.idToken;
     if (idToken == null) {
-      throw StateError('Google ID token is null.');
+      _logger.error('Google ID token is null', null, null, context);
+      throw StateError(
+        'Google ID token is null. Ensure a Web Client ID (client_type: 3) exists in google-services.json.',
+      );
     }
+    _logger.debug('ID token obtained successfully: ${idToken.substring(0, 10)}...', context);
 
+    _logger.debug('Getting authorization (access token)...', context);
     String? accessToken;
     try {
-      // authorizeScopes is not on GoogleSignInAuthentication directly?
-      // It is on `GoogleSignIn`? 
-      // Prompt says `account.authorizationClient.authorizeScopes(scopes)`.
-      // `authorizationClient` is likely from `googleapis_auth` package?
-      // This implies `extension` or additional package `googleapis_auth`?
-      // It's getting complicated.
-      // I'll simplify to standard Firebase Google Sign In integration.
-      // `GoogleAuthProvider.credential` needs `idToken` and `accessToken`.
-      accessToken = auth.accessToken;
+      final authorization = await account.authorizationClient.authorizeScopes(scopes);
+      accessToken = authorization.accessToken;
+      if (accessToken != null) {
+        _logger.debug('Access token obtained successfully: ${accessToken.substring(0, 10)}...', context);
+      } else {
+        _logger.debug('Access token is null (valid for idToken-only flows)', context);
+      }
     } catch (authzError) {
       _logger.warning('Authorization failed (proceeding with idToken only): $authzError', context);
     }
@@ -161,14 +134,46 @@ class AuthService implements AuthRepository {
     );
 
     _logger.debug('Signing in to Firebase...', context);
-    return await _auth.signInWithCredential(credential);
+    try {
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+      
+      _logger.success('Firebase sign-in successful', context);
+      _logger.data('User UID', userCredential.user?.uid, context);
+      _logger.data('User email', userCredential.user?.email, context);
+
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      _logger.error('Firebase Auth Error: [${e.code}] ${e.message}', e, null, context);
+      _logger.data('Error Credential', e.credential.toString(), context);
+      rethrow;
+    } catch (e) {
+      _logger.error('Unexpected error during Firebase sign-in', e, null, context);
+      rethrow;
+    }
   }
 
   @override
   Future<void> signOut() async {
-    await Future.wait([
-      _auth.signOut(),
-      _googleSignIn.signOut(),
-    ]);
+    final context = _logger.createContext();
+    _logger.info('Starting sign-out process', context);
+    
+    try {
+      _logger.debug('Signing out from Firebase and Google...', context);
+      try {
+        await _googleSignIn.disconnect();
+      } catch (e) {
+        _logger.debug('Google disconnect failed or not applicable: $e', context);
+      }
+
+      await Future.wait([
+        _auth.signOut(),
+        _googleSignIn.signOut(),
+      ]);
+      _logger.success('Sign-out successful', context);
+    } catch (e) {
+      _logger.error('Sign-out failed', e, null, context);
+      throw Exception('Sign-out failed: $e');
+    }
   }
 }

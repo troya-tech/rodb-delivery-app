@@ -29,6 +29,10 @@
             "package_name": "com.episody.episody_app",
             "certificate_hash": "5eafd233e51ba607932bf90ea37d23a157bf7edf"
           }
+        },
+        {
+          "client_id": "695787289329-r5lmh0rgl7ma94f02gn3it354r70pd81.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
@@ -54,7 +58,20 @@
           "package_name": "com.rodb.delivery.rodb_delivery_app.uat"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "695787289329-9nlsjnh4n4k935i968d67tsaqbso0om7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rodb.delivery.rodb_delivery_app.uat",
+            "certificate_hash": "5eafd233e51ba607932bf90ea37d23a157bf7edf"
+          }
+        },
+        {
+          "client_id": "695787289329-r5lmh0rgl7ma94f02gn3it354r70pd81.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDaiy0SmZPP4fxprzfBj818OwRfwI6lcSA"

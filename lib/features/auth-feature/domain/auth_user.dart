@@ -1,4 +1,7 @@
-class AuthUser {
+
+import 'package:equatable/equatable.dart';
+
+class AuthUser extends Equatable {
   final String uid;
   final String? email;
   final String? displayName;
@@ -12,7 +15,5 @@ class AuthUser {
   });
 
   @override
-  String toString() {
-    return 'AuthUser(uid: $uid, email: $email, displayName: $displayName, photoUrl: $photoUrl)';
-  }
+  List<Object?> get props => [uid, email, displayName, photoUrl];
 }
