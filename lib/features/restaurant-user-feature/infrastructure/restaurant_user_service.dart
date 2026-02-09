@@ -14,15 +14,26 @@ class RestaurantUserService implements RestaurantUserRepository {
   DatabaseReference get _dbRef => FirebaseDatabase.instance.ref('restaurantUsers');
 
   @override
-  Future<RestaurantUser?> getRestaurantUser(String uid) async {
+  Future<RestaurantUser?> getRestaurantUserByEmail(String email) async {
     final context = _logger.createContext();
-    _logger.info('Getting restaurant user: $uid', context);
+    _logger.info('Getting restaurant user by email: $email', context);
     
     try {
-      final snapshot = await _dbRef.child(uid).get();
+      final snapshot = await _dbRef.orderByChild('email').equalTo(email).get();
       if (!snapshot.exists) return null;
       
-      return _mapSnapshotToUser(uid, snapshot.value as Map<dynamic, dynamic>);
+      final value = snapshot.value;
+      if (value is Map) {
+        final entries = value.entries;
+        if (entries.isEmpty) return null;
+
+        final firstEntry = entries.first;
+        final key = firstEntry.key as String;
+        final userData = firstEntry.value as Map<dynamic, dynamic>;
+
+        return _mapSnapshotToUser(key, userData);
+      }
+      return null;
     } catch (e) {
       _logger.error('Failed to get restaurant user', e, null, context);
       return null;
@@ -30,11 +41,29 @@ class RestaurantUserService implements RestaurantUserRepository {
   }
 
   @override
-  Stream<RestaurantUser?> watchRestaurantUser(String uid) {
-    return _dbRef.child(uid).onValue.map((event) {
+  Stream<RestaurantUser?> watchRestaurantUserByEmail(String email) {
+    // Queries in Firebase return a Map where keys are the pushIDs/UIDs
+    // Since we are querying by email, we expect 0 or 1 result ideally.
+    final query = _dbRef.orderByChild('email').equalTo(email);
+    
+    _logger.info('Watching restaurant user by email: $email');
+    return query.onValue.map((event) {
       final value = event.snapshot.value;
       if (value == null) return null;
-      return _mapSnapshotToUser(uid, value as Map<dynamic, dynamic>);
+
+      if (value is Map) { 
+        // value is { "somePushId": { "email": "...", ... } }
+        final entries = value.entries;
+        if (entries.isEmpty) return null;
+
+        // Take the first match
+        final firstEntry = entries.first;
+        final key = firstEntry.key as String;
+        final userData = firstEntry.value as Map<dynamic, dynamic>;
+
+        return _mapSnapshotToUser(key, userData);
+      }
+      return null;
     });
   }
 

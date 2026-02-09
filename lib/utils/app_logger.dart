@@ -47,45 +47,45 @@ class AppLogger {
   /// Format log prefix with optional breadcrumb ID
   String _formatPrefix([LogContext? context]) {
     if (context != null) {
-      return '[$_serviceName] [${context.breadcrumbId}]';
+      return '[RODB] [$_serviceName] [${context.breadcrumbId}]';
     }
-    return '[$_serviceName]';
+    return '[RODB] [$_serviceName]';
   }
   
   /// Log a debug message
   /// 
-  /// Format: [ServiceName] [breadcrumb-id] "message"
+  /// Format: [RODB] [ServiceName] [breadcrumb-id] message
   /// Only logs in debug mode
   void debug(String message, [LogContext? context]) {
     if (kDebugMode) {
-      print('${_formatPrefix(context)} "$message"');
+      print('${_formatPrefix(context)} $message');
     }
   }
   
   /// Log an info message
   /// 
-  /// Format: [ServiceName] [breadcrumb-id] ℹ️ "message"
+  /// Format: [RODB] [ServiceName] [breadcrumb-id] message
   void info(String message, [LogContext? context]) {
     if (kDebugMode) {
-      print('${_formatPrefix(context)} ℹ️ "$message"');
+      print('${_formatPrefix(context)} $message');
     }
   }
   
   /// Log a warning message
   /// 
-  /// Format: [ServiceName] [breadcrumb-id] ⚠️ "message"
+  /// Format: [RODB] [ServiceName] [breadcrumb-id] message
   void warning(String message, [LogContext? context]) {
     if (kDebugMode) {
-      print('${_formatPrefix(context)} ⚠️ "$message"');
+      print('${_formatPrefix(context)} $message');
     }
   }
   
   /// Log an error message
   /// 
-  /// Format: [ServiceName] [breadcrumb-id] ❌ "message"
+  /// Format: [RODB] [ServiceName] [breadcrumb-id] message
   /// Logs in both debug and release mode for critical errors
   void error(String message, [Object? error, StackTrace? stackTrace, LogContext? context]) {
-    print('${_formatPrefix(context)} ❌ "$message"');
+    print('${_formatPrefix(context)} $message');
     if (error != null) {
       print('${_formatPrefix(context)} Error details: $error');
     }
@@ -96,19 +96,19 @@ class AppLogger {
   
   /// Log a success message
   /// 
-  /// Format: [ServiceName] [breadcrumb-id] ✅ "message"
+  /// Format: [RODB] [ServiceName] [breadcrumb-id] message
   void success(String message, [LogContext? context]) {
     if (kDebugMode) {
-      print('${_formatPrefix(context)} ✅ "$message"');
+      print('${_formatPrefix(context)} $message');
     }
   }
   
   /// Log data/object for debugging
   /// 
-  /// Format: [ServiceName] [breadcrumb-id] 📦 "label": data
+  /// Format: [RODB] [ServiceName] [breadcrumb-id] label: data
   void data(String label, Object? data, [LogContext? context]) {
     if (kDebugMode) {
-      print('${_formatPrefix(context)} 📦 "$label": $data');
+      print('${_formatPrefix(context)} $label: $data');
     }
   }
   

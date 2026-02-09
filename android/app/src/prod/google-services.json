@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "763801279148-lm1ibld3rogeq14j8mlj174crve1vbti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rodb.delivery.rodb_delivery_app",
+            "certificate_hash": "5eafd233e51ba607932bf90ea37d23a157bf7edf"
+          }
+        },
+        {
           "client_id": "763801279148-sop5avn0kogmojdkftgjo9i7dtkr4v6v.apps.googleusercontent.com",
           "client_type": 3
         }

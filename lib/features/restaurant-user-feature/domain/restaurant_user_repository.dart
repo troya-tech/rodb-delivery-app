@@ -1,8 +1,8 @@
 import 'restaurant_user.dart';
 
 abstract class RestaurantUserRepository {
-  Future<RestaurantUser?> getRestaurantUser(String uid);
+  Future<RestaurantUser?> getRestaurantUserByEmail(String email);
   Future<void> saveRestaurantUser(RestaurantUser user);
-  Stream<RestaurantUser?> watchRestaurantUser(String uid);
+  Stream<RestaurantUser?> watchRestaurantUserByEmail(String email);
   Future<void> addRestaurantKey(String uid, String restaurantKey);
 }

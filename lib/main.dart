@@ -21,7 +21,12 @@ Future<void> main() async {
       : firebase_uat.DefaultFirebaseOptions.webClientId;
 
   await Firebase.initializeApp(options: firebaseOptions);
-  await GoogleSignIn.instance.initialize(serverClientId: webClientId);
+  
+  // Initialize Google Sign-In v7 (required before usage)
+  await GoogleSignIn.instance.initialize(
+    serverClientId: webClientId,
+    // Add scopes if needed, e.g., scopes: ['email'],
+  );
 
   runApp(const ProviderScope(child: MyApp()));
 }

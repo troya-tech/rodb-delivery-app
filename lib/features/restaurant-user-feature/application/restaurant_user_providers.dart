@@ -10,15 +10,16 @@ final restaurantUserRepositoryProvider = Provider<RestaurantUserRepository>((ref
 });
 
 /// StreamProvider for a specific restaurant user
-final restaurantUserStreamProvider = StreamProvider.family<RestaurantUser?, String>((ref, uid) {
-  return ref.watch(restaurantUserRepositoryProvider).watchRestaurantUser(uid);
+/// StreamProvider for a specific restaurant user by email
+final restaurantUserStreamProvider = StreamProvider.family<RestaurantUser?, String>((ref, email) {
+  return ref.watch(restaurantUserRepositoryProvider).watchRestaurantUserByEmail(email);
 });
 
 /// Provider for the currently logged-in restaurant user data
 final currentRestaurantUserProvider = StreamProvider<RestaurantUser?>((ref) {
   final authUser = ref.watch(authStateProvider).value;
-  if (authUser == null) {
+  if (authUser == null || authUser.email == null) {
     return Stream.value(null);
   }
-  return ref.watch(restaurantUserRepositoryProvider).watchRestaurantUser(authUser.uid);
+  return ref.watch(restaurantUserRepositoryProvider).watchRestaurantUserByEmail(authUser.email!);
 });

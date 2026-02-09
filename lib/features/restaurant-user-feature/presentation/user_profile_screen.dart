@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../auth-feature/application/auth_providers.dart';
 import '../application/restaurant_user_providers.dart';
+import '../../../utils/app_logger.dart';
 
 class UserProfileScreen extends ConsumerWidget {
+  static const _logger = AppLogger('UserProfileScreen');
+
   const UserProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    _logger.debug('Building UserProfileScreen');
     final restaurantUserAsync = ref.watch(currentRestaurantUserProvider);
     final authUserAsync = ref.watch(authStateProvider);
 
@@ -48,10 +52,15 @@ class UserProfileScreen extends ConsumerWidget {
       ),
       body: authUserAsync.when(
         data: (authUser) {
-          if (authUser == null) return const Center(child: Text('Not authenticated'));
+          if (authUser == null) {
+            _logger.warning('User is not authenticated');
+            return const Center(child: Text('Not authenticated'));
+          }
+          _logger.data('Auth user loaded', authUser.uid);
           
           return restaurantUserAsync.when(
             data: (restaurantUser) {
+              _logger.data('Restaurant user loaded', restaurantUser?.uid);
               return SingleChildScrollView(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -109,11 +118,17 @@ class UserProfileScreen extends ConsumerWidget {
               );
             },
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (err, stack) => Center(child: Text('Error loading profile: $err')),
+            error: (err, stack) {
+              _logger.error('Error loading restaurant user profile', err, stack);
+              return Center(child: Text('Error loading profile: $err'));
+            },
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text('Auth Error: $err')),
+        error: (err, stack) {
+          _logger.error('Error loading auth state', err, stack);
+          return Center(child: Text('Auth Error: $err'));
+        },
       ),
     );
   }
