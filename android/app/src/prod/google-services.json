@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "763801279148",
+    "firebase_url": "https://rodb-56626-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "rodb-56626",
+    "storage_bucket": "rodb-56626.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763801279148:android:ad469ed1eafe93e027dd09",
+        "android_client_info": {
+          "package_name": "com.rodb.delivery.rodb_delivery_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763801279148-sop5avn0kogmojdkftgjo9i7dtkr4v6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYnmOVRsXQzGm4a7OaHxIItgBaWUM61FE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763801279148-sop5avn0kogmojdkftgjo9i7dtkr4v6v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
