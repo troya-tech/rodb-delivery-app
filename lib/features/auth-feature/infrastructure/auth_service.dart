@@ -1,4 +1,6 @@
-import 'package:flutter/services.dart'; // For PlatformException
+import 'dart:async';
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../utils/app_logger.dart';
@@ -19,7 +21,6 @@ class AuthService implements AuthRepository {
   FirebaseAuth get _auth => FirebaseAuth.instance;
 
   // Google Sign-In instance
-  // v7: Use singleton instance
   GoogleSignIn get _googleSignIn => GoogleSignIn.instance;
 
   @override
@@ -39,160 +40,162 @@ class AuthService implements AuthRepository {
       photoUrl: user.photoURL,
     );
   }
+
+  /// Fast-fail connectivity check before attempting sign-in
+  Future<void> _checkConnectivity(dynamic context) async {
+    try {
+      final result = await InternetAddress.lookup('google.com')
+          .timeout(const Duration(seconds: 3));
+      if (result.isEmpty || result[0].rawAddress.isEmpty) {
+        throw Exception('No internet connection');
+      }
+      _logger.debug('Connectivity check passed', context);
+    } on SocketException catch (_) {
+      _logger.error('No internet connection', null, null, context);
+      throw Exception(
+        'No internet connection. Please check your network and try again.',
+      );
+    } on TimeoutException catch (_) {
+      _logger.error('Internet connection timeout', null, null, context);
+      throw Exception(
+        'Internet connection is too slow. Please check your network and try again.',
+      );
+    }
+  }
+
   @override
   Future<AuthUser> signInWithGoogle() async {
     final context = _logger.createContext();
-    _logger.info('Starting Google Sign-In flow (v7)', context);
-    
+    _logger.info('Starting Google Sign-In flow', context);
+
+    // Fast-fail: check internet before attempting sign-in
+    await _checkConnectivity(context);
+
     try {
       final credential = await _performGoogleSignIn(context);
-      final user = credential.user;
-      if (user == null) {
-         throw Exception('Google Sign-In succeeded but user is null');
-      }
-      return _mapFirebaseUser(user)!;
-    } catch (e) {
-      if (_isError16(e)) {
-        _logger.warning('Credential Manager cache issue detected (Error 16), clearing and retrying...', context);
-        
-        try {
-          // Retry cleanup
-          try { await _googleSignIn.disconnect(); } catch (_) {}
-          try { await _googleSignIn.signOut(); } catch (_) {}
-          _logger.debug('State cleared. Waiting before retry...', context);
-          
-          // Brief delay to allow Credential Manager to reset
-          await Future.delayed(const Duration(seconds: 1));
-          
-          // Force interactive sign-in on retry to avoid lightweight auth loop
-          _logger.debug('Retrying with forced interactive sign-in...', context);
-          final account = await _googleSignIn.authenticate();
-          
-          if (account == null) {
-            throw FirebaseAuthException(code: 'canceled', message: 'User canceled sign in retry');
-          }
-          
-          final credential = await _createCredentialFromAccount(account, context);
-          return await _signInWithCredential(credential, context);
+      return _mapFirebaseUser(credential.user)!;
+    } on GoogleSignInException catch (e) {
+      // HANDLE ERROR 16 retry logic
+      if (e.code == GoogleSignInExceptionCode.canceled &&
+          e.description?.contains('16') == true) {
+        _logger.warning(
+          'Credential Manager cache issue detected (Error 16), clearing and retrying...',
+          context,
+        );
 
+        // Mitigation: Clear cached credentials before retry
+        try {
+          await _googleSignIn.disconnect();
+        } catch (_) {}
+
+        await Future.delayed(const Duration(seconds: 1));
+
+        try {
+          final credential = await _performGoogleSignIn(context);
+          return _mapFirebaseUser(credential.user)!;
         } catch (retryError) {
           _logger.error('Google Sign-In retry failed', retryError, null, context);
           throw Exception('Google Sign-In failed after retry: $retryError');
         }
       }
-      
+
       _logger.error('Google Sign-In failed', e, null, context);
-      if (_isCanceled(e)) {
+      if (e.code == GoogleSignInExceptionCode.canceled) {
         throw Exception('Google Sign-In was canceled by user');
       }
+      throw Exception('Google Sign-In failed: ${e.description ?? e.code}');
+    } catch (e) {
+      _logger.error('Google Sign-In failed', e, null, context);
       throw Exception('Google Sign-In failed: $e');
     }
   }
 
-  bool _isError16(Object e) {
-    final s = e.toString();
-    return s.contains('16') && s.contains('reauth'); // Simple string check for safety
-  }
-
-  bool _isCanceled(Object e) {
-    if (e is PlatformException && e.code == 'canceled') return true;
-    if (e is FirebaseAuthException && e.code == 'canceled') return true;
-    return e.toString().contains('canceled');
-  }
-
-  Future<AuthUser> _signInWithCredential(OAuthCredential credential, dynamic context) async {
-    _logger.debug('Signing in to Firebase with credential...', context);
-    try {
-      final userCredential = await _auth.signInWithCredential(credential);
-      final user = userCredential.user;
-      
-      if (user == null) {
-         throw Exception('Firebase sign-in succeeded but user is null');
-      }
-
-      _logger.success('Firebase sign-in successful', context);
-      _logger.data('User UID', user.uid, context);
-      _logger.data('User email', user.email, context);
-      
-      return _mapFirebaseUser(user)!;
-    } on FirebaseAuthException catch (e) {
-      _logger.error('Firebase Auth Error: [${e.code}] ${e.message}', e, null, context);
-      rethrow;
-    } catch (e) {
-      _logger.error('Unexpected error during Firebase sign-in', e, null, context);
-      rethrow;
-    }
-  }
-
-  Future<OAuthCredential> _createCredentialFromAccount(GoogleSignInAccount account, dynamic context) async {
-    _logger.debug('Getting authentication tokens for ${account.email}...', context);
-    final GoogleSignInAuthentication auth = await account.authentication;
-    final String? idToken = auth.idToken;
-    // final String? accessToken = auth.accessToken; // Removed: Not available in v7 by default
-
-    if (idToken == null) {
-      _logger.error('Google ID token is null', null, null, context);
-      throw StateError('Google ID token is null. Check configuration.');
-    }
-    
-    return GoogleAuthProvider.credential(
-      idToken: idToken,
-      accessToken: null, // accessToken is optional and not available in basic v7 auth
-    );
-  }
-
   Future<UserCredential> _performGoogleSignIn(dynamic context) async {
+    const List<String> scopes = ['email'];
+
+    // 1. Silent sign-in warm up
     _logger.debug('Attempting lightweight authentication...', context);
-    GoogleSignInAccount? account = await _googleSignIn.attemptLightweightAuthentication();
-    
+    GoogleSignInAccount? account =
+        await _googleSignIn.attemptLightweightAuthentication();
+
+    // 2. Interactive sign-in fallback
     if (account == null) {
       _logger.debug('Lightweight auth unavailable, using interactive sign-in...', context);
-      try {
-        account = await _googleSignIn.authenticate();
-      } catch (e) {
-        if (_isCanceled(e)) return Future.error(e);
-        _logger.warning('Interactive auth failed: $e', context);
-        throw e;
-      }
-    }
-    
-    if (account == null) {
-         throw FirebaseAuthException(code: 'canceled', message: 'User canceled sign in');
+      account = await _googleSignIn.authenticate(scopeHint: scopes);
     }
 
     _logger.success('Google authentication successful', context);
-    
-    final credential = await _createCredentialFromAccount(account, context);
-    
-    // We duplicate logic here because _performGoogleSignIn signature (UserCredential) 
-    // is slightly different from _signInWithCredential (AuthUser), but that's fine for now 
-    // or we can refactor _performGoogleSignIn to return AuthUser too.
-    // To match existing call sites, let's keep it returning UserCredential or change call sites.
-    // Ah, signInWithGoogle expects UserCredential from _performGoogleSignIn in original code?
-    // Let's check original code: `final credential = await _performGoogleSignIn(context); final user = credential.user;`
-    // Yes, it returns UserCredential.
-    // But `_signInWithCredential` helper returns AuthUser.
-    // I will simply duplicate the `signInWithCredential` call here to keep return type consistent OR update signature.
-    // Let's update signature of _performGoogleSignIn to return AuthUser! cleaner.
-    
-    return _auth.signInWithCredential(credential);
+    _logger.data('Account email', account.email, context);
+
+    // 3. ID Token extraction
+    _logger.debug('Getting authentication tokens...', context);
+    final GoogleSignInAuthentication auth = account.authentication;
+    final String? idToken = auth.idToken;
+    if (idToken == null) {
+      _logger.error('Google ID token is null', null, null, context);
+      throw StateError(
+        'Google ID token is null. Ensure a Web Client ID (client_type: 3) exists in google-services.json.',
+      );
+    }
+    _logger.debug('ID token obtained successfully', context);
+
+    // 4. Access Token (Optional separate step in v7)
+    String? accessToken;
+    try {
+      final authz = await account.authorizationClient.authorizeScopes(scopes);
+      accessToken = authz.accessToken;
+      _logger.debug('Access token obtained successfully', context);
+    } catch (authzError) {
+      _logger.warning(
+        'Authorization failed (proceeding with idToken only): $authzError',
+        context,
+      );
+    }
+
+    // 5. Firebase Sign-In
+    _logger.debug('Creating Firebase credential...', context);
+    final OAuthCredential credential = GoogleAuthProvider.credential(
+      idToken: idToken,
+      accessToken: accessToken,
+    );
+
+    _logger.debug('Signing in to Firebase...', context);
+    try {
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+
+      _logger.success('Firebase sign-in successful', context);
+      _logger.data('User UID', userCredential.user?.uid, context);
+      _logger.data('User email', userCredential.user?.email, context);
+
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      _logger.error(
+        'Firebase Auth Error: [${e.code}] ${e.message}',
+        e,
+        null,
+        context,
+      );
+      rethrow;
+    }
   }
 
   @override
   Future<void> signOut() async {
     final context = _logger.createContext();
     _logger.info('Starting sign-out process', context);
-    
+
     try {
       _logger.debug('Signing out from Firebase and Google...', context);
+      // Both disconnect and signOut to prevent stale session on next login
       try {
         await _googleSignIn.disconnect();
-      } catch (e) {
-        _logger.debug('Google disconnect failed or not applicable: $e', context);
-      }
-      try { await _googleSignIn.signOut(); } catch (_) {}
+      } catch (_) {}
 
-      await _auth.signOut();
+      await Future.wait([
+        _auth.signOut(),
+        _googleSignIn.signOut(),
+      ]);
       _logger.success('Sign-out successful', context);
     } catch (e) {
       _logger.error('Sign-out failed', e, null, context);
