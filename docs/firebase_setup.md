@@ -44,12 +44,7 @@ Project: `rodb-delivery-app-prod` (Update if different)
 Package: `com.rodb.delivery.rodb_delivery_app`
 
 ```bash
-flutterfire configure \
-  --project=rodb-delivery-app-prod \
-  --out=lib/firebase_options_prod.dart \
-  --android-package-name=com.rodb.delivery.rodb_delivery_app \
-  --platforms=android
-```
+flutterfire configure --project=rodb-56626 --out=lib/firebase_options_prod.dart --android-package-name=com.rodb.delivery.rodb_delivery_app
 
 #### Post-Configuration for PROD
 ```bash

@@ -4,8 +4,8 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart' show defaultTargetPlatform, TargetPlatform;
 
 class DefaultFirebaseOptions {
-  /// Web Client ID (client_type: 3) — update when prod Firebase project is configured
-  static const String webClientId = 'TODO_REPLACE_WITH_PROD_WEB_CLIENT_ID';
+  /// Web Client ID (client_type: 3) from google-services.json
+  static const String webClientId = '763801279148-sop5avn0kogmojdkftgjo9i7dtkr4v6v.apps.googleusercontent.com';
 
   static FirebaseOptions get currentPlatform {
     if (defaultTargetPlatform == TargetPlatform.android) {
@@ -17,10 +17,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'dummy',
-    appId: 'dummy',
-    messagingSenderId: 'dummy',
-    projectId: 'rodb-delivery-app-prod',
-    storageBucket: 'dummy',
+    apiKey: 'AIzaSyCYnmOVRsXQzGm4a7OaHxIItgBaWUM61FE',
+    appId: '1:763801279148:android:ad469ed1eafe93e027dd09',
+    messagingSenderId: '763801279148',
+    projectId: 'rodb-56626',
+    databaseURL: 'https://rodb-56626-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'rodb-56626.appspot.com',
   );
 }
+
