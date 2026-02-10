@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'dart:math';
+import 'dart:developer' as developer;
 
 /// Context for tracking operations across services
 /// 
@@ -58,7 +59,9 @@ class AppLogger {
   /// Only logs in debug mode
   void debug(String message, [LogContext? context]) {
     if (kDebugMode) {
-      print('${_formatPrefix(context)} $message');
+      final formatted = '${_formatPrefix(context)} $message';
+      debugPrint(formatted);
+      developer.log(message, name: _serviceName, level: 500);
     }
   }
   
@@ -67,7 +70,9 @@ class AppLogger {
   /// Format: [RODB] [ServiceName] [breadcrumb-id] message
   void info(String message, [LogContext? context]) {
     if (kDebugMode) {
-      print('${_formatPrefix(context)} $message');
+      final formatted = '${_formatPrefix(context)} $message';
+      debugPrint(formatted);
+      developer.log(message, name: _serviceName, level: 800);
     }
   }
   
@@ -76,7 +81,9 @@ class AppLogger {
   /// Format: [RODB] [ServiceName] [breadcrumb-id] message
   void warning(String message, [LogContext? context]) {
     if (kDebugMode) {
-      print('${_formatPrefix(context)} $message');
+      final formatted = '${_formatPrefix(context)} $message';
+      debugPrint(formatted);
+      developer.log(message, name: _serviceName, level: 900);
     }
   }
   
@@ -85,12 +92,15 @@ class AppLogger {
   /// Format: [RODB] [ServiceName] [breadcrumb-id] message
   /// Logs in both debug and release mode for critical errors
   void error(String message, [Object? error, StackTrace? stackTrace, LogContext? context]) {
-    print('${_formatPrefix(context)} $message');
+    final formatted = '${_formatPrefix(context)} $message';
+    debugPrint(formatted);
+    developer.log(message, name: _serviceName, level: 1000, error: error, stackTrace: stackTrace);
+    
     if (error != null) {
-      print('${_formatPrefix(context)} Error details: $error');
+      debugPrint('${_formatPrefix(context)} Error details: $error');
     }
     if (stackTrace != null && kDebugMode) {
-      print('${_formatPrefix(context)} Stack trace:\n$stackTrace');
+      debugPrint('${_formatPrefix(context)} Stack trace:\n$stackTrace');
     }
   }
   
@@ -99,7 +109,9 @@ class AppLogger {
   /// Format: [RODB] [ServiceName] [breadcrumb-id] message
   void success(String message, [LogContext? context]) {
     if (kDebugMode) {
-      print('${_formatPrefix(context)} $message');
+      final formatted = '${_formatPrefix(context)} $message';
+      debugPrint(formatted);
+      developer.log(message, name: _serviceName, level: 800);
     }
   }
   
@@ -108,7 +120,9 @@ class AppLogger {
   /// Format: [RODB] [ServiceName] [breadcrumb-id] label: data
   void data(String label, Object? data, [LogContext? context]) {
     if (kDebugMode) {
-      print('${_formatPrefix(context)} $label: $data');
+      final formatted = '${_formatPrefix(context)} $label: $data';
+      debugPrint(formatted);
+      developer.log('$label: $data', name: _serviceName, level: 500);
     }
   }
   

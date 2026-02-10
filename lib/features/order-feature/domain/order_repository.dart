@@ -5,4 +5,5 @@ abstract class OrderRepository {
   Future<Order?> getOrderById(String id);
   Future<void> saveOrder(Order order);
   Stream<List<Order>> watchOrders();
+  Stream<List<Order>> watchOrdersForStores(List<String> storeIds);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../features/restaurant-user-feature/presentation/user_profile_screen.dart';
+import '../profile-page/profile-page.dart';
+import '../orders-page/orders-page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -11,11 +12,21 @@ class HomePage extends StatelessWidget {
         title: const Text('Home'),
         actions: [
           IconButton(
+            icon: const Icon(Icons.list_alt),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const OrdersPage(),
+                ),
+              );
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.person),
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const UserProfileScreen(),
+                  builder: (context) => const ProfilePage(),
                 ),
               );
             },

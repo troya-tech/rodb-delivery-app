@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../application/order_providers.dart';
+import '../../../features/order-feature/application/order_providers.dart';
+import '../profile-page/profile-page.dart';
 
-class OrderListScreen extends ConsumerWidget {
-  const OrderListScreen({super.key});
+class OrdersPage extends ConsumerWidget {
+  const OrdersPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -12,6 +13,18 @@ class OrderListScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Orders'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const ProfilePage(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: ordersAsync.when(
         data: (orders) => orders.isEmpty
