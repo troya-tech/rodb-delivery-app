@@ -54,45 +54,45 @@ class OrderDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSectionTitle(context, 'Store Information'),
-            ListTile(
-              title: Text(order.storeName),
-              subtitle: Text('ID: ${order.id}'),
-              leading: const Icon(Icons.store),
-            ),
-            const Divider(),
+            // _buildSectionTitle(context, 'Store Information'),
+            // ListTile(
+            //   title: Text(order.storeName),
+            //   subtitle: Text('ID: ${order.id}'),
+            //   leading: const Icon(Icons.store),
+            // ),
+            // const Divider(),
             
-            _buildSectionTitle(context, 'Customer Details'),
-            ListTile(
-              title: Text('${order.customer.firstName} ${order.customer.lastName}'),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Phone: ${order.customer.phone}'),
-                  Text('Email: ${order.customer.email}'),
-                  Text('Address: ${order.customer.address}'),
-                  if (order.customer.addressDescription != null)
-                    Text('Note: ${order.customer.addressDescription}'),
-                ],
-              ),
-              leading: const Icon(Icons.person),
-            ),
-            const Divider(),
+            // _buildSectionTitle(context, 'Customer Details'),
+            // ListTile(
+            //   title: Text('${order.customer.firstName} ${order.customer.lastName}'),
+            //   subtitle: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Text('Phone: ${order.customer.phone}'),
+            //       Text('Email: ${order.customer.email}'),
+            //       Text('Address: ${order.customer.address}'),
+            //       if (order.customer.addressDescription != null)
+            //         Text('Note: ${order.customer.addressDescription}'),
+            //     ],
+            //   ),
+            //   leading: const Icon(Icons.person),
+            // ),
+            // const Divider(),
 
-            _buildSectionTitle(context, 'Order Items'),
-            ...order.orderItems.map((item) => ListTile(
-              title: Text(item.orderItemName),
-              subtitle: Text(item.orderItemDescription),
-              trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text('x${item.orderItemCount}'),
-                  Text('${item.orderItemPrice}'),
-                ],
-              ),
-            )),
-            const Divider(),
+            // _buildSectionTitle(context, 'Order Items'),
+            // ...order.orderItems.map((item) => ListTile(
+            //   title: Text(item.orderItemName),
+            //   subtitle: Text(item.orderItemDescription),
+            //   trailing: Column(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     crossAxisAlignment: CrossAxisAlignment.end,
+            //     children: [
+            //       Text('x${item.orderItemCount}'),
+            //       Text('${item.orderItemPrice}'),
+            //     ],
+            //   ),
+            // )),
+            // const Divider(),
 
             _buildSectionTitle(context, 'Payment & Total'),
             ListTile(
