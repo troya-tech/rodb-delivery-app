@@ -2,9 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:rodb_delivery_app/app/pages/auth-gate-page/auth_gate_page.dart';
 import 'firebase_options_prod.dart' as firebase_prod;
 import 'firebase_options_uat.dart' as firebase_uat;
+import 'app/routing/app_router.dart';
+import 'app/routing/app_routes.dart';
 
 const String environment = String.fromEnvironment('ENV', defaultValue: 'uat');
 
@@ -31,6 +32,8 @@ Future<void> main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
+
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -43,7 +46,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const AuthGatePage(),
+      onGenerateRoute: AppRouter.generateRoute,
+      initialRoute: AppRoutes.authGate,
     );
   }
 }
+

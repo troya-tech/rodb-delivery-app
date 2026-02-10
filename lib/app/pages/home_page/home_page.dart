@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../profile-page/profile-page.dart';
-import '../orders-page/orders-page.dart';
+import '../routing/app_routes.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,25 +14,18 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.list_alt),
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const OrdersPage(),
-                ),
-              );
+              Navigator.of(context).pushNamed(AppRoutes.orders);
             },
           ),
           IconButton(
             icon: const Icon(Icons.person),
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const ProfilePage(),
-                ),
-              );
+              Navigator.of(context).pushNamed(AppRoutes.profile);
             },
           ),
         ],
       ),
+
       body: const Center(child: Text('Welcome Home!')),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../features/order-feature/application/order_providers.dart';
-import '../profile-page/profile-page.dart';
+import '../routing/app_routes.dart';
 
 class OrdersPage extends ConsumerWidget {
   const OrdersPage({super.key});
@@ -17,11 +17,7 @@ class OrdersPage extends ConsumerWidget {
           IconButton(
             icon: const Icon(Icons.person),
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const ProfilePage(),
-                ),
-              );
+              Navigator.of(context).pushNamed(AppRoutes.profile);
             },
           ),
         ],
@@ -36,9 +32,18 @@ class OrdersPage extends ConsumerWidget {
                   return ListTile(
                     title: Text('Order #${order.orderCardNumber}'),
                     subtitle: Text('${order.customer.firstName} ${order.customer.lastName}'),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        AppRoutes.orderDetails,
+                        arguments: order,
+                      );
+                    },
                   );
                 },
               ),
+
+
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('Error: $err')),
       ),
