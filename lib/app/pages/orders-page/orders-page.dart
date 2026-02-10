@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../features/order-feature/application/order_providers.dart';
-import '../routing/app_routes.dart';
+import '../../routing/app_routes.dart';
 
 class OrdersPage extends ConsumerWidget {
   const OrdersPage({super.key});
