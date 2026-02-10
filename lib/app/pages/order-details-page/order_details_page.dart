@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../features/order-feature/domain/order.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class OrderDetailsPage extends StatelessWidget {
   final Order order;
 
@@ -47,7 +49,7 @@ class OrderDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order #${order.orderCardNumber}'),
+        title: Text(AppLocalizations.of(context)!.orderNumber(order.orderCardNumber)),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -94,11 +96,11 @@ class OrderDetailsPage extends StatelessWidget {
             // )),
             // const Divider(),
 
-            _buildSectionTitle(context, 'Payment & Total'),
+            _buildSectionTitle(context, AppLocalizations.of(context)!.paymentAndTotal),
             ListTile(
-              title: Text('Payment Type: ${order.orderPayment.paymentType}'),
+              title: Text(AppLocalizations.of(context)!.paymentType(order.orderPayment.paymentType)),
               subtitle: order.orderPayment.ticketType != null 
-                  ? Text('Ticket: ${order.orderPayment.ticketType}')
+                  ? Text(AppLocalizations.of(context)!.ticketType(order.orderPayment.ticketType!))
                   : null,
               trailing: Text(
                 '${order.totalOrderPrice} ${order.currency.symbol}',
@@ -111,15 +113,15 @@ class OrderDetailsPage extends StatelessWidget {
             ),
             const Divider(),
 
-            _buildSectionTitle(context, 'Delivery Info'),
+            _buildSectionTitle(context, AppLocalizations.of(context)!.deliveryInfo),
             ListTile(
-              title: Text('Address: ${order.delivery.address}'),
-              subtitle: Text('Note: ${order.delivery.addressNote}'),
+              title: Text(AppLocalizations.of(context)!.address(order.delivery.address)),
+              subtitle: Text(AppLocalizations.of(context)!.note(order.delivery.addressNote)),
               leading: const Icon(Icons.delivery_dining),
               trailing: IconButton(
                 icon: const Icon(Icons.map, color: Colors.blue),
                 onPressed: _openMaps,
-                tooltip: 'Open in Maps',
+                tooltip: AppLocalizations.of(context)!.openInMaps,
               ),
             ),
             Padding(
@@ -129,21 +131,21 @@ class OrderDetailsPage extends StatelessWidget {
                 child: OutlinedButton.icon(
                   onPressed: _openMaps,
                   icon: const Icon(Icons.directions),
-                  label: const Text('Get Directions'),
+                  label: Text(AppLocalizations.of(context)!.getDirections),
                 ),
               ),
             ),
             const Divider(),
 
-            _buildSectionTitle(context, 'Metadata'),
+            _buildSectionTitle(context, AppLocalizations.of(context)!.metaData),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Platform: ${order.meta.platform}'),
-                  Text('Created: ${order.meta.creationDate}'),
-                  Text('Integration ID: ${order.integrationOrderId}'),
+                  Text(AppLocalizations.of(context)!.platform(order.meta.platform)),
+                  Text(AppLocalizations.of(context)!.created(order.meta.creationDate)),
+                  Text(AppLocalizations.of(context)!.integrationId(order.integrationOrderId)),
                 ],
               ),
             ),

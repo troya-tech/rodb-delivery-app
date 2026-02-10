@@ -4,6 +4,8 @@ import '../../../features/auth-feature/application/auth_providers.dart';
 import '../../../features/restaurant-user-feature/application/restaurant_user_providers.dart';
 import '../../../utils/app_logger.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class ProfilePage extends ConsumerWidget {
   static const _logger = AppLogger('ProfilePage');
 
@@ -17,7 +19,7 @@ class ProfilePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Restaurant User Profile'),
+        title: Text(AppLocalizations.of(context)!.profileTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
@@ -25,16 +27,16 @@ class ProfilePage extends ConsumerWidget {
               final confirmed = await showDialog<bool>(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: const Text('Logout'),
-                  content: const Text('Are you sure you want to log out?'),
+                  title: Text(AppLocalizations.of(context)!.logout),
+                  content: Text(AppLocalizations.of(context)!.logoutConfirmation),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(false),
-                      child: const Text('Cancel'),
+                      child: Text(AppLocalizations.of(context)!.cancel),
                     ),
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(true),
-                      child: const Text('Logout'),
+                      child: Text(AppLocalizations.of(context)!.logout),
                     ),
                   ],
                 ),
@@ -54,7 +56,7 @@ class ProfilePage extends ConsumerWidget {
         data: (authUser) {
           if (authUser == null) {
             _logger.warning('User is not authenticated');
-            return const Center(child: Text('Not authenticated'));
+            return Center(child: Text(AppLocalizations.of(context)!.notAuthenticated));
           }
           _logger.data('Auth user loaded', authUser.uid);
           
@@ -94,11 +96,11 @@ class ProfilePage extends ConsumerWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            _buildInfoRow(context, 'Role', restaurantUser.role.name.toUpperCase()),
+                            _buildInfoRow(context, AppLocalizations.of(context)!.role, restaurantUser.role.name.toUpperCase()),
                             const SizedBox(height: 16),
-                            const Text(
-                              'Associated Restaurant Keys:',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                            Text(
+                              AppLocalizations.of(context)!.associatedKeys,
+                              style: const TextStyle(fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 8),
                             ...restaurantUser.restaurantKeys.map((key) => Card(
@@ -111,7 +113,7 @@ class ProfilePage extends ConsumerWidget {
                         ),
                       ),
                     ] else ...[
-                      const Center(child: Text('No restaurant user profile found')),
+                      Center(child: Text(AppLocalizations.of(context)!.noProfileFound)),
                     ],
                   ],
                 ),

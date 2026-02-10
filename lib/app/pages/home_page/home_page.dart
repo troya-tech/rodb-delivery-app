@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../../routing/app_routes.dart';
 
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -9,7 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Text(AppLocalizations.of(context)!.homeTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.list_alt),
@@ -26,7 +29,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
 
-      body: const Center(child: Text('Welcome Home!')),
+      body: Center(child: Text(AppLocalizations.of(context)!.welcomeMessage)),
     );
   }
 }

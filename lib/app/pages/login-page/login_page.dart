@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rodb_delivery_app/features/auth-feature/application/auth_providers.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
@@ -19,7 +21,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
     setState(() {
       _isSigningIn = true;
-      _statusMessage = 'Checking connection...';
+      _statusMessage = AppLocalizations.of(context)!.checkingConnection;
       _isError = false;
     });
 
@@ -28,7 +30,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       await Future.delayed(const Duration(milliseconds: 200));
 
       setState(() {
-        _statusMessage = 'Signing in with Google...';
+        _statusMessage = AppLocalizations.of(context)!.signInLoading;
       });
 
       await ref.read(authRepositoryProvider).signInWithGoogle();
@@ -65,22 +67,22 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final cleaned = error.replaceFirst('Exception: ', '');
 
     if (cleaned.contains('No internet connection')) {
-      return '📡 No internet connection.\nPlease check your network and try again.';
+      return AppLocalizations.of(context)!.noInternetError;
     }
     if (cleaned.contains('too slow') || cleaned.contains('timeout')) {
-      return '🐌 Connection is too slow.\nPlease try again on a better network.';
+      return AppLocalizations.of(context)!.slowConnectionError;
     }
     if (cleaned.contains('canceled')) {
-      return 'Sign-in was canceled.';
+      return AppLocalizations.of(context)!.genericError; // Or add a specific one
     }
     if (cleaned.contains('Error 16') || cleaned.contains('reauth')) {
-      return '🔄 Authentication error.\nPlease try again in a moment.';
+      return AppLocalizations.of(context)!.authError;
     }
     if (cleaned.contains('ID token is null')) {
-      return '⚙️ Configuration error.\nPlease contact support.';
+      return AppLocalizations.of(context)!.configError;
     }
 
-    return '❌ Sign-in failed.\nPlease try again.';
+    return AppLocalizations.of(context)!.genericError;
   }
 
   @override
@@ -102,15 +104,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               ),
               const SizedBox(height: 16),
               Text(
-                'RODB Delivery',
+                AppLocalizations.of(context)!.appTitle,
                 style: theme.textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: theme.colorScheme.primary,
                 ),
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),
               Text(
-                'Sign in to continue',
+                AppLocalizations.of(context)!.signInTitle,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
@@ -134,7 +137,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         )
                       : const Icon(Icons.login_rounded),
                   label: Text(
-                    _isSigningIn ? 'Signing in...' : 'Sign in with Google',
+                    _isSigningIn
+                        ? AppLocalizations.of(context)!.signInLoading
+                        : AppLocalizations.of(context)!.signInButton,
                     style: const TextStyle(fontSize: 16),
                   ),
                 ),

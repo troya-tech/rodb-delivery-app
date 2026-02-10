@@ -6,5 +6,95 @@
   "helloWorld": "Hello World!",
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
-  }
+  },
+  "signInTitle": "Sign in to continue",
+  "signInButton": "Sign in with Google",
+  "signInLoading": "Signing in...",
+  "checkingConnection": "Checking connection...",
+  "noInternetError": "📡 No internet connection.\nPlease check your network and try again.",
+  "slowConnectionError": "🐌 Connection is too slow.\nPlease try again on a better network.",
+  "authError": "🔄 Authentication error.\nPlease try again in a moment.",
+  "configError": "⚙️ Configuration error.\nPlease contact support.",
+  "genericError": "❌ Sign-in failed.\nPlease try again.",
+  "homeTitle": "Home",
+  "welcomeMessage": "Welcome Home!",
+  "ordersTitle": "Orders",
+  "noOrdersFound": "No orders found",
+  "orderNumber": "Order #{number}",
+  "@orderNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentType": "Payment Type: {type}",
+  "@paymentType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "ticketType": "Ticket: {type}",
+  "@ticketType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "deliveryInfo": "Delivery Info",
+  "address": "Address: {address}",
+  "@address": {
+    "placeholders": {
+      "address": {
+        "type": "String"
+      }
+    }
+  },
+  "note": "Note: {note}",
+  "@note": {
+    "placeholders": {
+      "note": {
+        "type": "String"
+      }
+    }
+  },
+  "openInMaps": "Open in Maps",
+  "getDirections": "Get Directions",
+  "platform": "Platform: {platform}",
+  "@platform": {
+    "placeholders": {
+      "platform": {
+        "type": "String"
+      }
+    }
+  },
+  "created": "Created: {date}",
+  "@created": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "integrationId": "Integration ID: {id}",
+  "@integrationId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "profileTitle": "Restaurant User Profile",
+  "logout": "Logout",
+  "logoutConfirmation": "Are you sure you want to log out?",
+  "cancel": "Cancel",
+  "notAuthenticated": "Not authenticated",
+  "role": "Role",
+  "associatedKeys": "Associated Restaurant Keys:",
+  "noProfileFound": "No restaurant user profile found",
+  "paymentAndTotal": "Payment & Total",
+  "metaData": "Metadata"
 }

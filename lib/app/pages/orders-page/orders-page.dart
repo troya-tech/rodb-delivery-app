@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../features/order-feature/application/order_providers.dart';
 import '../../routing/app_routes.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class OrdersPage extends ConsumerWidget {
   const OrdersPage({super.key});
 
@@ -12,7 +14,7 @@ class OrdersPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Orders'),
+        title: Text(AppLocalizations.of(context)!.appTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.person),
@@ -24,13 +26,13 @@ class OrdersPage extends ConsumerWidget {
       ),
       body: ordersAsync.when(
         data: (orders) => orders.isEmpty
-            ? const Center(child: Text('No orders found'))
+            ? Center(child: Text(AppLocalizations.of(context)!.noOrdersFound))
             : ListView.builder(
                 itemCount: orders.length,
                 itemBuilder: (context, index) {
                   final order = orders[index];
                   return ListTile(
-                    title: Text('Order #${order.orderCardNumber}'),
+                    title: Text(AppLocalizations.of(context)!.orderNumber(order.orderCardNumber)),
                     subtitle: Text('${order.customer.firstName} ${order.customer.lastName}'),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () {
