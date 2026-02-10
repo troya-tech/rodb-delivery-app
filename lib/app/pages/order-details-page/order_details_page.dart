@@ -8,22 +8,14 @@ class OrderDetailsPage extends StatelessWidget {
   const OrderDetailsPage({super.key, required this.order});
 
   Future<void> _openMaps() async {
-    final lat = order.delivery.latitude;
-    final lng = order.delivery.longitude;
+    final address = order.delivery.address;
+    final encodedAddress = Uri.encodeComponent(address);
     
-    // Check if coordinates are valid (not 0,0 unless intended)
-    if (lat == 0.0 && lng == 0.0) {
-      // If coordinates are 0, try searching by address string instead
-      final encodedAddress = Uri.encodeComponent(order.delivery.address);
-      final searchUrl = Uri.parse('https://www.google.com/maps/search/?api=1&query=$encodedAddress');
-      if (await canLaunchUrl(searchUrl)) {
-        await launchUrl(searchUrl, mode: LaunchMode.externalApplication);
-        return;
-      }
-    }
-
-    final googleMapsUrl = Uri.parse('https://www.google.com/maps/search/?api=1&query=$lat,$lng');
-    final appleMapsUrl = Uri.parse('https://maps.apple.com/?q=$lat,$lng');
+    // Google Maps Search URL using address
+    final googleMapsUrl = Uri.parse('https://www.google.com/maps/search/?api=1&query=$encodedAddress');
+    
+    // Apple Maps Search URL using address
+    final appleMapsUrl = Uri.parse('https://maps.apple.com/?q=$encodedAddress');
 
     try {
       if (await canLaunchUrl(googleMapsUrl)) {
@@ -31,8 +23,11 @@ class OrderDetailsPage extends StatelessWidget {
       } else if (await canLaunchUrl(appleMapsUrl)) {
         await launchUrl(appleMapsUrl, mode: LaunchMode.externalApplication);
       } else {
-        // Final attempt: launch literal geo scheme which is often handled by default maps app
-        final geoUrl = Uri.parse('geo:$lat,$lng?q=$lat,$lng');
+        // Fallback to coordinates if address search fails (unlikely)
+        final lat = order.delivery.latitude;
+        final lng = order.delivery.longitude;
+        final geoUrl = Uri.parse('geo:$lat,$lng?q=$encodedAddress');
+        
         if (await canLaunchUrl(geoUrl)) {
           await launchUrl(geoUrl, mode: LaunchMode.externalApplication);
         } else {
@@ -45,6 +40,7 @@ class OrderDetailsPage extends StatelessWidget {
       await launchUrl(googleMapsUrl, mode: LaunchMode.platformDefault);
     }
   }
+
 
 
   @override
