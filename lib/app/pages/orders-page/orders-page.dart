@@ -34,7 +34,7 @@ class OrdersPage extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   final order = orders[index];
                   return ListTile(
-                    title: Text('Order #${order.shortOrderId}'),
+                    title: Text('Order #${order.orderCardNumber}'),
                     subtitle: Text('${order.customer.firstName} ${order.customer.lastName}'),
                   );
                 },

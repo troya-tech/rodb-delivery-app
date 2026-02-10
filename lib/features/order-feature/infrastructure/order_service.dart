@@ -30,7 +30,7 @@ class OrderService implements OrderRepository {
 
   @override
   Future<void> saveOrder(Order order) async {
-    _logger.info('Saving order: ${order.shortOrderId}');
+    _logger.info('Saving order: ${order.orderCardNumber}');
   }
 
   @override
@@ -74,13 +74,13 @@ class OrderService implements OrderRepository {
           });
           
           // Sort orders by date descending
-          orders.sort((a, b) => b.receivedAt.compareTo(a.receivedAt));
+          orders.sort((a, b) => b.meta.creationDate.compareTo(a.meta.creationDate));
           storeOrdersMap[storeId] = orders;
         }
 
         // Emit merged list
         final mergedOrders = storeOrdersMap.values.expand((x) => x).toList();
-        mergedOrders.sort((a, b) => b.receivedAt.compareTo(a.receivedAt));
+        mergedOrders.sort((a, b) => b.meta.creationDate.compareTo(a.meta.creationDate));
         controller.add(mergedOrders);
       }, onError: (error) {
         _logger.error('Error watching store $storeId', error);
