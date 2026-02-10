@@ -6,6 +6,7 @@ import 'firebase_options_prod.dart' as firebase_prod;
 import 'firebase_options_uat.dart' as firebase_uat;
 import 'app/routing/app_router.dart';
 import 'app/routing/app_routes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 const String environment = String.fromEnvironment('ENV', defaultValue: 'uat');
 
@@ -41,11 +42,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'RODB Delivery App',
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: const Locale('tr'),
       onGenerateRoute: AppRouter.generateRoute,
       initialRoute: AppRoutes.authGate,
     );
