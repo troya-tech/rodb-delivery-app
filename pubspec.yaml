@@ -46,6 +46,7 @@ dependencies:
   flutter_riverpod: ^2.6.1
   equatable: ^2.0.8
   url_launcher: ^6.3.2
+  rxdart: ^0.28.0
 
 
 dev_dependencies:

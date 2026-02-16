@@ -43,16 +43,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         _isError = true;
         _statusMessage = message;
       });
-
-      // Auto-clear error after 5 seconds
-      Future.delayed(const Duration(seconds: 5), () {
-        if (mounted && _isError) {
-          setState(() {
-            _statusMessage = null;
-            _isError = false;
-          });
-        }
-      });
+      // Error persists until user dismisses (close button) or retries login
     } finally {
       if (mounted) {
         setState(() {
