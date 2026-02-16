@@ -1,52 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../features/order-feature/domain/order.dart';
+import '../../../features/map-feature/application/map_providers.dart';
+import '../../../features/map-feature/domain/address.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class OrderDetailsPage extends StatelessWidget {
+class OrderDetailsPage extends ConsumerWidget {
   final Order order;
 
   const OrderDetailsPage({super.key, required this.order});
 
-  Future<void> _openMaps() async {
-    final address = order.delivery.address;
-    final encodedAddress = Uri.encodeComponent(address);
+  Future<void> _openMaps(WidgetRef ref) async {
+    final mapService = ref.read(mapServiceProvider);
     
-    // Google Maps Search URL using address
-    final googleMapsUrl = Uri.parse('https://www.google.com/maps/search/?api=1&query=$encodedAddress');
+    final orderAddress = Address(
+      address: order.delivery.address, 
+      addressDescription: order.delivery.addressNote,
+      latitude: order.delivery.latitude,
+      longitude: order.delivery.longitude,
+    );
     
-    // Apple Maps Search URL using address
-    final appleMapsUrl = Uri.parse('https://maps.apple.com/?q=$encodedAddress');
-
-    try {
-      if (await canLaunchUrl(googleMapsUrl)) {
-        await launchUrl(googleMapsUrl, mode: LaunchMode.externalApplication);
-      } else if (await canLaunchUrl(appleMapsUrl)) {
-        await launchUrl(appleMapsUrl, mode: LaunchMode.externalApplication);
-      } else {
-        // Fallback to coordinates if address search fails (unlikely)
-        final lat = order.delivery.latitude;
-        final lng = order.delivery.longitude;
-        final geoUrl = Uri.parse('geo:$lat,$lng?q=$encodedAddress');
-        
-        if (await canLaunchUrl(geoUrl)) {
-          await launchUrl(geoUrl, mode: LaunchMode.externalApplication);
-        } else {
-          throw 'No maps application found';
-        }
-      }
-    } catch (e) {
-      debugPrint('Error launching maps: $e');
-      // If all else fails, try to launch the browser version
-      await launchUrl(googleMapsUrl, mode: LaunchMode.platformDefault);
-    }
+    await mapService.launchMapForAddress(orderAddress);
   }
 
 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.orderNumber(order.orderCardNumber)),
@@ -120,7 +102,7 @@ class OrderDetailsPage extends StatelessWidget {
               leading: const Icon(Icons.delivery_dining),
               trailing: IconButton(
                 icon: const Icon(Icons.map, color: Colors.blue),
-                onPressed: _openMaps,
+                onPressed: () => _openMaps(ref),
                 tooltip: AppLocalizations.of(context)!.openInMaps,
               ),
             ),
@@ -129,7 +111,7 @@ class OrderDetailsPage extends StatelessWidget {
               child: SizedBox(
                 width: double.infinity,
                 child: OutlinedButton.icon(
-                  onPressed: _openMaps,
+                  onPressed: () => _openMaps(ref),
                   icon: const Icon(Icons.directions),
                   label: Text(AppLocalizations.of(context)!.getDirections),
                 ),
