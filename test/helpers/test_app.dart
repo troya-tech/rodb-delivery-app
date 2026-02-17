@@ -11,6 +11,8 @@ import 'package:rodb_delivery_app/features/restaurant-user-feature/application/r
 import 'package:rodb_delivery_app/features/restaurant-user-feature/infrastructure/fake_restaurant_user_repository.implementation.dart';
 import 'package:rodb_delivery_app/features/store-feature/application/store_service.dart';
 import 'package:rodb_delivery_app/features/store-feature/infrastructure/fake_store_repository.implementation.dart';
+import 'package:rodb_delivery_app/features/order-feature/application/order_providers.dart';
+import 'package:rodb_delivery_app/features/order-feature/infrastructure/fake_order_repository.implementation.dart';
 import 'package:rodb_delivery_app/features/restaurant-user-feature/presentation/user_profile_screen.dart';
 
 /// Convenience constant for the standard test user.
@@ -57,11 +59,13 @@ class TestHarness {
   final TestableAuthRepository fakeAuth;
   final FakeRestaurantUserRepository fakeRestaurantUser;
   final FakeStoreRepository fakeStore;
+  final FakeOrderRepository fakeOrder;
 
   TestHarness._({
     required this.fakeAuth,
     required this.fakeRestaurantUser,
     required this.fakeStore,
+    required this.fakeOrder,
   });
 
   /// Creates a fresh [TestHarness] with new repositories.
@@ -70,6 +74,7 @@ class TestHarness {
       fakeAuth: TestableAuthRepository(),
       fakeRestaurantUser: FakeRestaurantUserRepository(),
       fakeStore: FakeStoreRepository(),
+      fakeOrder: FakeOrderRepository(),
     );
   }
 
@@ -103,6 +108,7 @@ class TestHarness {
         authRepositoryProvider.overrideWithValue(fakeAuth),
         restaurantUserRepositoryProvider.overrideWithValue(fakeRestaurantUser),
         storeRepositoryProvider.overrideWithValue(fakeStore),
+        orderRepositoryProvider.overrideWithValue(fakeOrder),
       ],
       child: MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,

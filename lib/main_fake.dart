@@ -7,6 +7,8 @@ import 'package:rodb_delivery_app/features/restaurant-user-feature/application/r
 import 'package:rodb_delivery_app/features/restaurant-user-feature/infrastructure/fake_restaurant_user_repository.implementation.dart';
 import 'package:rodb_delivery_app/features/store-feature/application/store_service.dart';
 import 'package:rodb_delivery_app/features/store-feature/infrastructure/fake_store_repository.implementation.dart';
+import 'package:rodb_delivery_app/features/order-feature/application/order_providers.dart';
+import 'package:rodb_delivery_app/features/order-feature/infrastructure/fake_order_repository.implementation.dart';
 import 'firebase_options_uat.dart' as firebase_uat;
 import 'main.dart';
 
@@ -28,6 +30,7 @@ Future<void> main() async {
 
   final fakeRestaurantUser = FakeRestaurantUserRepository();
   final fakeStore = FakeStoreRepository();
+  final fakeOrder = FakeOrderRepository();
 
   runApp(
     ProviderScope(
@@ -36,6 +39,7 @@ Future<void> main() async {
         authRepositoryProvider.overrideWithValue(FakeAuthRepository()),
         restaurantUserRepositoryProvider.overrideWithValue(fakeRestaurantUser),
         storeRepositoryProvider.overrideWithValue(fakeStore),
+        orderRepositoryProvider.overrideWithValue(fakeOrder),
       ],
       child: const MyApp(),
     ),
