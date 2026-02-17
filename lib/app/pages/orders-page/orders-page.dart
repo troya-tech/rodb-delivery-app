@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../features/order-feature/application/order_providers.dart';
-import '../../routing/app_routes.dart';
+import 'package:rodb_delivery_app/app/pages/orders-page/orders_page_view_model.dart';
+import 'package:rodb_delivery_app/features/order-feature/application/order_providers.dart';
+import 'package:rodb_delivery_app/app/routing/app_routes.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -25,27 +26,32 @@ class OrdersPage extends ConsumerWidget {
         ],
       ),
       body: ordersAsync.when(
-        data: (orders) => orders.isEmpty
-            ? Center(child: Text(AppLocalizations.of(context)!.noOrdersFound))
-            : ListView.builder(
-                itemCount: orders.length,
-                itemBuilder: (context, index) {
-                  final order = orders[index];
-                  return ListTile(
-                    title: Text(AppLocalizations.of(context)!.orderNumber(order.orderCardNumber)),
-                    subtitle: Text('${order.customer.firstName} ${order.customer.lastName}'),
-                    trailing: const Icon(Icons.chevron_right),
-                    onTap: () {
-                      Navigator.of(context).pushNamed(
-                        AppRoutes.orderDetails,
-                        arguments: order,
-                      );
-                    },
+        data: (orders) {
+          final viewModel = OrdersPageViewModel.fromDomain(orders: orders);
+          if (viewModel.isEmpty) {
+            return Center(
+                child: Text(AppLocalizations.of(context)!.noOrdersFound));
+          }
+          return ListView.builder(
+            itemCount: viewModel.orders.length,
+            itemBuilder: (context, index) {
+              final summary = viewModel.orders[index];
+              return ListTile(
+                title: Text(AppLocalizations.of(context)!
+                    .orderNumber(summary.orderCardNumber)),
+                subtitle: Text(
+                    '${summary.customerFullName} · ${summary.paymentType}'),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    AppRoutes.orderDetails,
+                    arguments: summary.domainOrder,
                   );
                 },
-              ),
-
-
+              );
+            },
+          );
+        },
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('Error: $err')),
       ),

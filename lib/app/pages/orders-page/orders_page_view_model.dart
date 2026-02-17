@@ -7,6 +7,7 @@ class OrderSummary extends Equatable {
   final String orderCardNumber;
   final String customerFullName;
   final String totalPrice;
+  final String paymentType;
   final String platform;
   final Order domainOrder;
 
@@ -15,6 +16,7 @@ class OrderSummary extends Equatable {
     required this.orderCardNumber,
     required this.customerFullName,
     required this.totalPrice,
+    required this.paymentType,
     required this.platform,
     required this.domainOrder,
   });
@@ -25,6 +27,7 @@ class OrderSummary extends Equatable {
         orderCardNumber,
         customerFullName,
         totalPrice,
+        paymentType,
         platform,
         domainOrder,
       ];
@@ -59,6 +62,7 @@ class OrdersPageViewModel extends Equatable {
             customerName.isNotEmpty ? customerName : 'Unknown Customer',
         totalPrice:
             '${order.totalOrderPrice.toStringAsFixed(2)} ${order.currency.symbol}',
+        paymentType: order.orderPayment.paymentType,
         platform: order.meta.platform,
         domainOrder: order,
       );
