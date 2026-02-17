@@ -4,7 +4,7 @@ import '../pages/auth-gate-page/auth_gate_page.dart';
 import '../pages/home_page/home_page.dart';
 import '../pages/orders-page/orders-page.dart';
 import '../pages/order-details-page/order_details_page.dart';
-import '../pages/profile-page/profile-page.dart';
+import '../pages/profile-page/profile_page.dart';
 import '../pages/login-page/login_page.dart';
 import 'app_routes.dart';
 
