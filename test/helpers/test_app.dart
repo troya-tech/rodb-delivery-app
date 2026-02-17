@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:rodb_delivery_app/l10n/generated/app_localizations.dart';
 
 import 'package:rodb_delivery_app/features/auth-feature/application/auth_providers.dart';
 import 'package:rodb_delivery_app/features/auth-feature/domain/auth_user.dart';

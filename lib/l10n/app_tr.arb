@@ -42,5 +42,6 @@
   "markAsDelivered": "Teslim Edildi Olarak İşaretle",
   "markAsDeliveredConfirmation": "Bu siparişi teslim edildi olarak işaretlemek istediğinize emin misiniz?",
   "confirm": "Onayla",
-  "delivered": "Teslim Edildi"
+  "delivered": "Teslim Edildi",
+  "performanceTitle": "Performans"
 }

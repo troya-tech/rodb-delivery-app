@@ -6,7 +6,7 @@ import 'firebase_options_prod.dart' as firebase_prod;
 import 'firebase_options_uat.dart' as firebase_uat;
 import 'app/routing/app_router.dart';
 import 'app/routing/app_routes.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:rodb_delivery_app/l10n/generated/app_localizations.dart';
 
 const String environment = String.fromEnvironment('ENV', defaultValue: 'uat');
 

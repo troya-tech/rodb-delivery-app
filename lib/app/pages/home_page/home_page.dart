@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../routing/app_routes.dart';
 
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:rodb_delivery_app/l10n/generated/app_localizations.dart';
 
 
 class HomePage extends StatelessWidget {

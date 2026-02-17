@@ -54,46 +54,30 @@ class RestaurantUserFixtures {
   // --- Individual user maps (matches Firebase JSON structure) ---
   static const Map<String, dynamic> testUser1Map = {
     'email': user1Email,
-    'restaurantKeys': {
-      'restaurantKey': restaurantKey,
-    },
-    'restaurantsRelated': {
-      'key': restaurantsRelatedKey,
-    },
+    'restaurantKeys': {'restaurantKey': restaurantKey},
+    'restaurantsRelated': {'key': restaurantsRelatedKey},
     'role': 'OWNER',
   };
 
   static const Map<String, dynamic> testUser2Map = {
     'email': user2Email,
-    'restaurantKeys': {
-      'restaurantKey': restaurantKey,
-    },
-    'restaurantsRelated': {
-      'key': restaurantsRelatedKey,
-    },
+    'restaurantKeys': {'restaurantKey': restaurantKey},
+    'restaurantsRelated': {'key': restaurantsRelatedKey},
     'role': 'OWNER',
   };
 
   static const Map<String, dynamic> testUser3Map = {
     'email': user3Email,
-    'restaurantKeys': {
-      'restaurantKey': restaurantKey,
-    },
-    'restaurantsRelated': {
-      'key': restaurantsRelatedKey,
-    },
+    'restaurantKeys': {'restaurantKey': restaurantKey},
+    'restaurantsRelated': {'key': restaurantsRelatedKey},
     'role': 'OWNER',
   };
 
   static const Map<String, dynamic> testUser4Map = {
     'email': user4Email,
-    'restaurantKeys': {
-      'restaurantKey': restaurantKey,
-    },
-    'restaurantsRelated': {
-      'key': restaurantsRelatedKey,
-    },
-    'role': 'OWNER',
+    'restaurantKeys': {'restaurantKey': restaurantKey},
+    'restaurantsRelated': {'key': restaurantsRelatedKey},
+    'role': 'DELIVER',
   };
 
   // --- Full "restaurantUsers" node as it appears in the RTDB export ---

@@ -4,7 +4,7 @@ import 'package:rodb_delivery_app/app/pages/orders-page/orders_page_view_model.d
 import 'package:rodb_delivery_app/features/order-feature/application/order_providers.dart';
 import 'package:rodb_delivery_app/app/routing/app_routes.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:rodb_delivery_app/l10n/generated/app_localizations.dart';
 
 class OrdersPage extends ConsumerWidget {
   const OrdersPage({super.key});

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rodb_delivery_app/utils/app_logger.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:rodb_delivery_app/l10n/generated/app_localizations.dart';
 
 import 'profile_page.facade.dart';
 import 'profile_page_view_model.dart';
