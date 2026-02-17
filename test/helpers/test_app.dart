@@ -7,6 +7,10 @@ import 'package:rodb_delivery_app/features/auth-feature/domain/auth_user.dart';
 import 'package:rodb_delivery_app/features/auth-feature/infrastructure/fake_auth_repository.implementation.dart';
 import 'package:rodb_delivery_app/testing/auth_fixtures.dart';
 import 'package:rodb_delivery_app/app/pages/auth-gate-page/auth_gate_page.dart';
+import 'package:rodb_delivery_app/features/restaurant-user-feature/application/restaurant_user_providers.dart';
+import 'package:rodb_delivery_app/features/restaurant-user-feature/infrastructure/fake_restaurant_user_repository.implementation.dart';
+import 'package:rodb_delivery_app/features/store-feature/application/store_service.dart';
+import 'package:rodb_delivery_app/features/store-feature/infrastructure/fake_store_repository.implementation.dart';
 
 /// Convenience constant for the standard test user.
 const AuthUser fakeAuthUser = AuthFixtures.testUser;
@@ -50,12 +54,22 @@ class TestableAuthRepository extends FakeAuthRepository {
 /// ```
 class TestHarness {
   final TestableAuthRepository fakeAuth;
+  final FakeRestaurantUserRepository fakeRestaurantUser;
+  final FakeStoreRepository fakeStore;
 
-  TestHarness._({required this.fakeAuth});
+  TestHarness._({
+    required this.fakeAuth,
+    required this.fakeRestaurantUser,
+    required this.fakeStore,
+  });
 
-  /// Creates a fresh [TestHarness] with a new [TestableAuthRepository].
+  /// Creates a fresh [TestHarness] with new repositories.
   factory TestHarness.create() {
-    return TestHarness._(fakeAuth: TestableAuthRepository());
+    return TestHarness._(
+      fakeAuth: TestableAuthRepository(),
+      fakeRestaurantUser: FakeRestaurantUserRepository(),
+      fakeStore: FakeStoreRepository(),
+    );
   }
 
   /// Builds a fully-wired test app with Riverpod overrides and localization.
@@ -66,6 +80,8 @@ class TestHarness {
     return ProviderScope(
       overrides: [
         authRepositoryProvider.overrideWithValue(fakeAuth),
+        restaurantUserRepositoryProvider.overrideWithValue(fakeRestaurantUser),
+        storeRepositoryProvider.overrideWithValue(fakeStore),
       ],
       child: MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
