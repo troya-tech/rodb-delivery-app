@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/pages/home_page/home_page.dart';
-import 'package:menumia_flutter_partner_app/app/pages/login-page/login_page.dart';
+import 'package:rodb_delivery_app/app/pages/login-page/login_page.dart';
 import '../application/auth_providers.dart';
 
 /// Auth gate that manages navigation based on authentication state
