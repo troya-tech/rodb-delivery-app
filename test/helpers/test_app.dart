@@ -6,7 +6,8 @@ import 'package:rodb_delivery_app/features/auth-feature/application/auth_provide
 import 'package:rodb_delivery_app/features/auth-feature/domain/auth_user.dart';
 import 'package:rodb_delivery_app/features/auth-feature/infrastructure/fake_auth_repository.implementation.dart';
 import 'package:rodb_delivery_app/testing/auth_fixtures.dart';
-import 'package:rodb_delivery_app/app/pages/auth-gate-page/auth_gate_page.dart';
+import 'package:rodb_delivery_app/app/routing/app_router.dart';
+import 'package:rodb_delivery_app/app/routing/app_routes.dart';
 import 'package:rodb_delivery_app/features/restaurant-user-feature/application/restaurant_user_providers.dart';
 import 'package:rodb_delivery_app/features/restaurant-user-feature/infrastructure/fake_restaurant_user_repository.implementation.dart';
 import 'package:rodb_delivery_app/features/store-feature/application/store_service.dart';
@@ -80,10 +81,19 @@ class TestHarness {
 
   /// Builds a fully-wired test app with Riverpod overrides and localization.
   ///
-  /// The app starts at [AuthGatePage] (the '/' route), which routes to
-  /// [LoginPage] or [OrdersPage] based on auth state.
+  /// Uses [AppRouter.generateRoute] for named-route navigation so that
+  /// `Navigator.pushNamed('/order-details')` etc. work correctly in tests.
   Widget buildApp() {
-    return _wrapWithProviders(const AuthGatePage());
+    return ProviderScope(
+      overrides: _providerOverrides,
+      child: MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: const Locale('tr'),
+        onGenerateRoute: AppRouter.generateRoute,
+        initialRoute: AppRoutes.authGate,
+      ),
+    );
   }
 
   /// Builds a test app that starts directly on [UserProfileScreen]
@@ -99,23 +109,21 @@ class TestHarness {
       displayName: 'Furkan Fake',
     );
     fakeAuth.emitUser(testUserNoPhoto);
-    return _wrapWithProviders(const UserProfileScreen());
-  }
-
-  Widget _wrapWithProviders(Widget home) {
     return ProviderScope(
-      overrides: [
-        authRepositoryProvider.overrideWithValue(fakeAuth),
-        restaurantUserRepositoryProvider.overrideWithValue(fakeRestaurantUser),
-        storeRepositoryProvider.overrideWithValue(fakeStore),
-        orderRepositoryProvider.overrideWithValue(fakeOrder),
-      ],
+      overrides: _providerOverrides,
       child: MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         locale: const Locale('tr'),
-        home: home,
+        home: const UserProfileScreen(),
       ),
     );
   }
+
+  List<Override> get _providerOverrides => [
+        authRepositoryProvider.overrideWithValue(fakeAuth),
+        restaurantUserRepositoryProvider.overrideWithValue(fakeRestaurantUser),
+        storeRepositoryProvider.overrideWithValue(fakeStore),
+        orderRepositoryProvider.overrideWithValue(fakeOrder),
+      ];
 }
