@@ -1,0 +1,1819 @@
+{
+  "failed_orders": {
+    "-Ol6feeNQQ5l_gCSbiAQ": {
+      "error": "Missing integrationOrderId",
+      "order": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Adres Bilgisi Yok",
+          "addressDescription": "",
+          "email": "placeholder@trendyol.com",
+          "firstName": "Trendyol",
+          "lastName": "Müşterisi",
+          "phone": "0000000000"
+        },
+        "delivery": {
+          "address": "Adres Bilgisi Yok",
+          "addressNote": "",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "id": "",
+        "integrationOrderId": "",
+        "meta": {
+          "clickingTime": "2026-02-10T13:12:26.800Z",
+          "cookingTime": 20,
+          "creationDate": "2026-02-10T13:12:26.800Z",
+          "integrationOrderId": "",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "00A",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "00A",
+        "orderPayment": {
+          "date": "2026-02-10T13:12:26.800Z",
+          "paymentType": "PAID",
+          "price": 0
+        },
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 0
+      },
+      "timestamp": "2026-02-10T13:12:27.305Z"
+    },
+    "-Ol6gTM5pBDKW5x_Sq_n": {
+      "error": "Missing integrationOrderId",
+      "order": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Adres Bilgisi Yok",
+          "addressDescription": "",
+          "email": "placeholder@trendyol.com",
+          "firstName": "Trendyol",
+          "lastName": "Müşterisi",
+          "phone": "0000000000"
+        },
+        "delivery": {
+          "address": "Adres Bilgisi Yok",
+          "addressNote": "",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "id": "",
+        "integrationOrderId": "",
+        "meta": {
+          "clickingTime": "2026-02-10T13:16:06.305Z",
+          "cookingTime": 20,
+          "creationDate": "2026-02-10T13:16:06.305Z",
+          "integrationOrderId": "",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "00A",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "00A",
+        "orderPayment": {
+          "date": "2026-02-10T13:16:06.305Z",
+          "paymentType": "PAID",
+          "price": 0
+        },
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 0
+      },
+      "timestamp": "2026-02-10T13:16:06.982Z"
+    },
+    "-Ol6g_kFeBn62jzVODfw": {
+      "error": "Missing integrationOrderId",
+      "order": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Adres Bilgisi Yok",
+          "addressDescription": "",
+          "email": "placeholder@trendyol.com",
+          "firstName": "Trendyol",
+          "lastName": "Müşterisi",
+          "phone": "0000000000"
+        },
+        "delivery": {
+          "address": "Adres Bilgisi Yok",
+          "addressNote": "",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "id": "",
+        "integrationOrderId": "",
+        "meta": {
+          "clickingTime": "2026-02-10T13:16:28.831Z",
+          "cookingTime": 20,
+          "creationDate": "2026-02-10T13:16:28.831Z",
+          "integrationOrderId": "",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "00A",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "00A",
+        "orderPayment": {
+          "date": "2026-02-10T13:16:28.831Z",
+          "paymentType": "PAID",
+          "price": 0
+        },
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 0
+      },
+      "timestamp": "2026-02-10T13:16:29.349Z"
+    },
+    "-Ol6gcgPHyay7Vf9jDPp": {
+      "error": "Missing integrationOrderId",
+      "order": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Adres Bilgisi Yok",
+          "addressDescription": "",
+          "email": "placeholder@trendyol.com",
+          "firstName": "Trendyol",
+          "lastName": "Müşterisi",
+          "phone": "0000000000"
+        },
+        "delivery": {
+          "address": "Adres Bilgisi Yok",
+          "addressNote": "",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "id": "",
+        "integrationOrderId": "",
+        "meta": {
+          "clickingTime": "2026-02-10T13:16:40.885Z",
+          "cookingTime": 20,
+          "creationDate": "2026-02-10T13:16:40.885Z",
+          "integrationOrderId": "",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "00A",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "00A",
+        "orderPayment": {
+          "date": "2026-02-10T13:16:40.885Z",
+          "paymentType": "PAID",
+          "price": 0
+        },
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 0
+      },
+      "timestamp": "2026-02-10T13:16:41.390Z"
+    }
+  },
+  "helloFirebase": "Hello madafaka!",
+  "orders": {
+    "318920": {
+      "10950695020": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "İsmetpaşa, Neşeli Sk. No:14 Daire:5 Zil:4",
+          "addressDescription": "Zil:4",
+          "email": "placeholder@trendyol.com",
+          "firstName": "Emirhan",
+          "lastName": "K.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "İsmetpaşa, Neşeli Sk. No:14 Daire:5 Zil:4",
+          "addressNote": "ZİL:4 - Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10950695020",
+        "id": "10950695020",
+        "integrationOrderId": "10950695020",
+        "meta": {
+          "clickingTime": "2026-02-10T13:02:26.440Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-10T13:02:26.440Z",
+          "integrationOrderId": "10950695020",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "007",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "007",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(Seçilen NFC tavuk burger, 2 tenders, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Combo 1",
+            "orderItemPrice": "519,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "BBQ Kiss Burger Menü",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Tatlı Acı Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Ballı Hardal Sos",
+            "orderItemPrice": "0,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-10T13:02:26.440Z",
+          "paymentType": "PAID",
+          "price": 319.9
+        },
+        "receivedAt": "2026-02-10T13:02:27.083Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 319.9
+      },
+      "10953192984": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Barbaros, Üstün Korugan Cd No:3",
+          "addressDescription": "terzioğlu kız yurdu barbaros mh. üstün korugan cd. no:3 merkez/çanakkale",
+          "email": "placeholder@trendyol.com",
+          "firstName": "şevin",
+          "lastName": "g.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Barbaros, Üstün Korugan Cd No:3",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10953192984",
+        "id": "10953192984",
+        "integrationOrderId": "10953192984",
+        "meta": {
+          "clickingTime": "2026-02-10T13:12:10.749Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-10T13:12:10.749Z",
+          "integrationOrderId": "10953192984",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "00A",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "00A",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(NFC tavuk burger, el yapımı ranch sos, turşu,cheddar peynir, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Golden Rancher Burger Menü",
+            "orderItemPrice": "399,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Tatlı Acı Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "29,90₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-10T13:12:10.749Z",
+          "paymentType": "PAID",
+          "price": 304.8
+        },
+        "receivedAt": "2026-02-10T13:12:11.406Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 304.8
+      },
+      "10953932401": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Esenler Nazmi Dolunay Sk. No:6 Merkez",
+          "addressDescription": "Sağlık ocağı yanı",
+          "email": "placeholder@trendyol.com",
+          "firstName": "umut",
+          "lastName": "t.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Esenler Nazmi Dolunay Sk. No:6 Merkez",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10953932401",
+        "id": "10953932401",
+        "integrationOrderId": "10953932401",
+        "meta": {
+          "clickingTime": "2026-02-10T17:24:16.308Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-10T17:24:16.308Z",
+          "integrationOrderId": "10953932401",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "00V",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "00V",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(Seçilen NFC tavuk burger, 2 tenders, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Combo 1",
+            "orderItemPrice": "519,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "Dynamite Bite Burger Menü",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Tatlı Acı Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-10T17:24:16.308Z",
+          "paymentType": "PAID",
+          "price": 319.9
+        },
+        "receivedAt": "2026-02-10T17:24:16.953Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 319.9
+      },
+      "10954466658": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Cevat Paşa Mh Havan Tabya 1. Sk. Çelik Apt. No:12 Merkez",
+          "addressDescription": "-",
+          "email": "placeholder@trendyol.com",
+          "firstName": "Mutlu",
+          "lastName": "Ç.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Cevat Paşa Mh Havan Tabya 1. Sk. Çelik Apt. No:12 Merkez",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10954466658",
+        "id": "10954466658",
+        "integrationOrderId": "10954466658",
+        "meta": {
+          "clickingTime": "2026-02-10T19:22:21.053Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-10T19:22:21.053Z",
+          "integrationOrderId": "10954466658",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "00E",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "00E",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(3 çıtır tenders, 10 çıtır shot, patates kızartması, seçilen 2 el yapımı sos)",
+            "orderItemName": "NFC Tenders Menü",
+            "orderItemPrice": "599,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Kam Acı Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Kam Acı Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 2,
+            "orderItemDescription": "",
+            "orderItemName": "Pepsi Pet (33 cl)",
+            "orderItemPrice": "178,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-10T19:22:21.053Z",
+          "paymentType": "PAID",
+          "price": 602.9
+        },
+        "receivedAt": "2026-02-10T19:22:21.620Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 602.9
+      },
+      "10954841273": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Esenler, 18 Mart Sk. Gözlem sitesi A blok kat 2 daire 7",
+          "addressDescription": "Esenler, 18 Mart Sk. Gözlem sitesi A blok kat 2 daire 7 Zeytin Market arası",
+          "email": "placeholder@trendyol.com",
+          "firstName": "Yasmin",
+          "lastName": "a.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Esenler, 18 Mart Sk. Gözlem sitesi A blok kat 2 daire 7",
+          "addressNote": "aşağı kapı zili çalışmamakta lütfen geldiğinizde arayınız - Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10954841273",
+        "id": "10954841273",
+        "integrationOrderId": "10954841273",
+        "meta": {
+          "clickingTime": "2026-02-10T21:22:39.048Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-10T21:22:39.048Z",
+          "integrationOrderId": "10954841273",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "00F",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "00F",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(Seçilen NFC tavuk burger, 2 tenders, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Combo 1",
+            "orderItemPrice": "519,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "Golden Rancher Burger Menü",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Ballı Hardal Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Tatlı Acı Sos",
+            "orderItemPrice": "0,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-10T21:22:39.048Z",
+          "paymentType": "PAID",
+          "price": 319.9
+        },
+        "receivedAt": "2026-02-10T21:22:39.620Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 319.9
+      },
+      "10954863488": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Barbaros, Sakarya Sk. No:2 İşyeri 2",
+          "addressDescription": "Yılmaz market karşısında iş yeri",
+          "email": "placeholder@trendyol.com",
+          "firstName": "Mertol",
+          "lastName": "O.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Barbaros, Sakarya Sk. No:2 İşyeri 2",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10954863488",
+        "id": "10954863488",
+        "integrationOrderId": "10954863488",
+        "meta": {
+          "clickingTime": "2026-02-10T21:32:01.034Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-10T21:32:01.034Z",
+          "integrationOrderId": "10954863488",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "010",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "010",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "5'li Tenders",
+            "orderItemPrice": "424,80₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "Su",
+            "orderItemPrice": "24,90₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-10T21:32:01.034Z",
+          "paymentType": "PAID",
+          "price": 299.8
+        },
+        "receivedAt": "2026-02-10T21:32:01.607Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 299.8
+      },
+      "10957506361": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Barbaros Kutlu Sk. No:3 Merkez",
+          "addressDescription": "yüksel sitesi demirtaş apt ali ağaoğlu anaokulu karşısı",
+          "email": "placeholder@trendyol.com",
+          "firstName": "minel",
+          "lastName": "s.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Barbaros Kutlu Sk. No:3 Merkez",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10957506361",
+        "id": "10957506361",
+        "integrationOrderId": "10957506361",
+        "meta": {
+          "clickingTime": "2026-02-11T19:00:45.158Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-11T19:00:45.158Z",
+          "integrationOrderId": "10957506361",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "00A",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "00A",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(Seçilen NFC tavuk burger, 2 tenders, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Combo 1",
+            "orderItemPrice": "519,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "Golden Rancher Burger Menü",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Ballı Hardal Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "Pepsi Pet (33 cl)",
+            "orderItemPrice": "89,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-11T19:00:45.158Z",
+          "paymentType": "PAID",
+          "price": 416.9
+        },
+        "receivedAt": "2026-02-11T19:00:45.832Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 416.9
+      },
+      "10957669660": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Barbaros Hamidiye Sk. No:83-85 Merkez",
+          "addressDescription": "-",
+          "email": "placeholder@trendyol.com",
+          "firstName": "ertunç",
+          "lastName": "a.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Barbaros Hamidiye Sk. No:83-85 Merkez",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10957669660",
+        "id": "10957669660",
+        "integrationOrderId": "10957669660",
+        "meta": {
+          "clickingTime": "2026-02-11T19:47:41.350Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-11T19:47:41.350Z",
+          "integrationOrderId": "10957669660",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "00K",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "00K",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(NFC tavuk burger, el yapımı ranch sos, turşu,cheddar peynir, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Golden Rancher Burger Menü",
+            "orderItemPrice": "399,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Ballı Hardal Sos",
+            "orderItemPrice": "0,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-11T19:47:41.350Z",
+          "paymentType": "PAID",
+          "price": 269.9
+        },
+        "receivedAt": "2026-02-11T19:47:41.935Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 269.9
+      },
+      "10958074165": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Barbaros, Hacı Mustafa Bey Cd. No:50",
+          "addressDescription": "Barbaros Mahallesi,Troya Caddesi Aktur Twist Evleri A Blok No:3/16",
+          "email": "placeholder@trendyol.com",
+          "firstName": "Furkan",
+          "lastName": "Ç.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Barbaros, Hacı Mustafa Bey Cd. No:50",
+          "addressNote": "lütfen alt kapıya geldiğinizde zile basmayip arayiniz - Servis İstiyorum - Temassız Teslimat İstiyorum - Zile Basma",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10958074165",
+        "id": "10958074165",
+        "integrationOrderId": "10958074165",
+        "meta": {
+          "clickingTime": "2026-02-11T22:47:38.126Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-11T22:47:38.126Z",
+          "integrationOrderId": "10958074165",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "00V",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "00V",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(NFC tavuk burger, el yapımı ranch sos, turşu,cheddar peynir, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Golden Rancher Burger Menü",
+            "orderItemPrice": "399,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Tatlı Acı Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Kam Acı Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "29,90₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-11T22:47:38.126Z",
+          "paymentType": "PAID",
+          "price": 279.8
+        },
+        "receivedAt": "2026-02-11T22:47:38.719Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 279.8
+      },
+      "10959693446": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "İsmetpaşa Mh. Astsubay Şerafettin Caddesi Çetinkaya City A1 Blok Bina No 40 Kat 4 Daire No 35 Çanakkale Merkez",
+          "addressDescription": "haylazbey döner üstü",
+          "email": "placeholder@trendyol.com",
+          "firstName": "sema",
+          "lastName": "g.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "İsmetpaşa Mh. Astsubay Şerafettin Caddesi Çetinkaya City A1 Blok Bina No 40 Kat 4 Daire No 35 Çanakkale Merkez",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10959693446",
+        "id": "10959693446",
+        "integrationOrderId": "10959693446",
+        "meta": {
+          "clickingTime": "2026-02-12T15:21:07.831Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-12T15:21:07.831Z",
+          "integrationOrderId": "10959693446",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "005",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "005",
+        "orderItems": [
+          {
+            "orderItemCount": 2,
+            "orderItemDescription": "(NFC tavuk burger, el yapımı ranch sos, turşu,cheddar peynir, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Golden Rancher Burger Menü",
+            "orderItemPrice": "799,80₺"
+          },
+          {
+            "orderItemCount": 2,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 2,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Tatlı Acı Sos",
+            "orderItemPrice": "0,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-12T15:21:07.831Z",
+          "paymentType": "PAID",
+          "price": 599.8
+        },
+        "receivedAt": "2026-02-12T15:21:08.403Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 599.8
+      },
+      "10960146307": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Esenler Mahallesi, Barış 1. Sokak, No:4 Daire:3",
+          "addressDescription": "-",
+          "email": "placeholder@trendyol.com",
+          "firstName": "Uğur",
+          "lastName": "K.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Esenler Mahallesi, Barış 1. Sokak, No:4 Daire:3",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10960146307",
+        "id": "10960146307",
+        "integrationOrderId": "10960146307",
+        "meta": {
+          "clickingTime": "2026-02-12T17:23:13.176Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-12T17:23:13.176Z",
+          "integrationOrderId": "10960146307",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "006",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "006",
+        "orderItems": [
+          {
+            "orderItemCount": 2,
+            "orderItemDescription": "(NFC tavuk burger, el yapımı ranch sos, turşu,cheddar peynir, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Golden Rancher Burger Menü",
+            "orderItemPrice": "799,80₺"
+          },
+          {
+            "orderItemCount": 2,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 2,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Ballı Hardal Sos",
+            "orderItemPrice": "0,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-12T17:23:13.176Z",
+          "paymentType": "PAID",
+          "price": 624.8
+        },
+        "receivedAt": "2026-02-12T17:23:13.750Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 624.8
+      },
+      "10960273681": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Barbaros, Güldal Sk. No:4",
+          "addressDescription": "dmr aluminyum ustu, damla evleri",
+          "email": "placeholder@trendyol.com",
+          "firstName": "ezgi",
+          "lastName": "k.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Barbaros, Güldal Sk. No:4",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10960273681",
+        "id": "10960273681",
+        "integrationOrderId": "10960273681",
+        "meta": {
+          "clickingTime": "2026-02-12T18:04:20.018Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-12T18:04:20.018Z",
+          "integrationOrderId": "10960273681",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "007",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "007",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(Seçilen NFC tavuk burger, 2 kanat, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Combo 2",
+            "orderItemPrice": "519,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "Golden Rancher Burger Menü",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Ballı Hardal Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Kam Acı Sos",
+            "orderItemPrice": "0,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-12T18:04:20.018Z",
+          "paymentType": "PAID",
+          "price": 369.9
+        },
+        "receivedAt": "2026-02-12T18:04:20.608Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 369.9
+      },
+      "10962548276": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Barbaros, Şht. Sunay Biçer Sk. No:36",
+          "addressDescription": "iki büyük ceviz ağacının olduğu bina umut apt.",
+          "email": "placeholder@trendyol.com",
+          "firstName": "caner",
+          "lastName": "e.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Barbaros, Şht. Sunay Biçer Sk. No:36",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10962548276",
+        "id": "10962548276",
+        "integrationOrderId": "10962548276",
+        "meta": {
+          "clickingTime": "2026-02-13T15:58:16.729Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-13T15:58:16.729Z",
+          "integrationOrderId": "10962548276",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "003",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "003",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(Seçilen NFC tavuk burger, 2 tenders, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Combo 1",
+            "orderItemPrice": "519,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "Golden Rancher Burger Menü",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Ballı Hardal Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Tatlı Acı Sos",
+            "orderItemPrice": "0,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-13T15:58:16.729Z",
+          "paymentType": "PAID",
+          "price": 369.9
+        },
+        "receivedAt": "2026-02-13T15:58:17.242Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 369.9
+      },
+      "10962634803": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Barbaros Mahallesi / Mehmet Çavuş Sokak / Salman Apartmanı",
+          "addressDescription": "-",
+          "email": "placeholder@trendyol.com",
+          "firstName": "İnanç",
+          "lastName": "M.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Barbaros Mahallesi / Mehmet Çavuş Sokak / Salman Apartmanı",
+          "addressNote": "Ranch sosu biraz daha az koyarsanız sevinirim - Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10962634803",
+        "id": "10962634803",
+        "integrationOrderId": "10962634803",
+        "meta": {
+          "clickingTime": "2026-02-13T15:58:03.248Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-13T15:58:03.248Z",
+          "integrationOrderId": "10962634803",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "004",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "004",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(NFC tavuk burger, el yapımı ranch sos, turşu,cheddar peynir, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Golden Rancher Burger Menü",
+            "orderItemPrice": "399,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Ballı Hardal Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "Ketçap",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "5'li Tenders",
+            "orderItemPrice": "399,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Tatlı Acı Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "Mayonez",
+            "orderItemPrice": "0,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-13T15:58:03.248Z",
+          "paymentType": "PAID",
+          "price": 599.8
+        },
+        "receivedAt": "2026-02-13T15:58:03.765Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 599.8
+      },
+      "10962652863": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Cevat Paşa Kayserili Ahmet Paşa Cd. Hükümet Konağı 1.Kat No:26 Merkez",
+          "addressDescription": "canakkale valiligi",
+          "email": "placeholder@trendyol.com",
+          "firstName": "mehmet",
+          "lastName": "ali a.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Cevat Paşa Kayserili Ahmet Paşa Cd. Hükümet Konağı 1.Kat No:26 Merkez",
+          "addressNote": "Valilige gelince arayin - Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10962652863",
+        "id": "10962652863",
+        "integrationOrderId": "10962652863",
+        "meta": {
+          "clickingTime": "2026-02-13T16:36:13.217Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-13T16:36:13.217Z",
+          "integrationOrderId": "10962652863",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "005",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "005",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(NFC tavuk burger, el yapımı ranch sos, turşu,cheddar peynir, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Golden Rancher Burger Menü",
+            "orderItemPrice": "399,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Ballı Hardal Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Tatlı Acı Sos",
+            "orderItemPrice": "0,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-13T16:36:13.217Z",
+          "paymentType": "PAID",
+          "price": 269.9
+        },
+        "receivedAt": "2026-02-13T16:36:13.801Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 269.9
+      },
+      "10962844654": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Barbaros Troya Cd. No:62 Merkez",
+          "addressDescription": "güzelliksalonu üstü",
+          "email": "placeholder@trendyol.com",
+          "firstName": "yiğit",
+          "lastName": "g.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Barbaros Troya Cd. No:62 Merkez",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10962844654",
+        "id": "10962844654",
+        "integrationOrderId": "10962844654",
+        "meta": {
+          "clickingTime": "2026-02-13T17:04:01.428Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-13T17:04:01.428Z",
+          "integrationOrderId": "10962844654",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "006",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "006",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(Seçilen NFC tavuk burger, 2 tenders, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Combo 1",
+            "orderItemPrice": "519,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "Sweet Chili Burger Menü",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Ballı Hardal Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-13T17:04:01.428Z",
+          "paymentType": "PAID",
+          "price": 353.4
+        },
+        "receivedAt": "2026-02-13T17:04:02.005Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 353.4
+      },
+      "10963479608": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "İsmetpaşa, mahallesi ortanca sokak no 9 daire 4",
+          "addressDescription": "ortanca sokak",
+          "email": "placeholder@trendyol.com",
+          "firstName": "bilgen",
+          "lastName": "b.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "İsmetpaşa, mahallesi ortanca sokak no 9 daire 4",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10963479608",
+        "id": "10963479608",
+        "integrationOrderId": "10963479608",
+        "meta": {
+          "clickingTime": "2026-02-13T20:41:56.833Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-13T20:41:56.833Z",
+          "integrationOrderId": "10963479608",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "007",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "007",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(NFC tavuk burger, el yapımı tatlı acı sos, cheddar peyniri, marul, turşu, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Sweet Chili Burger Menü",
+            "orderItemPrice": "399,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Tatlı Acı Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "Pepsi Pet (33 cl)",
+            "orderItemPrice": "89,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-13T20:41:56.833Z",
+          "paymentType": "PAID",
+          "price": 363.9
+        },
+        "receivedAt": "2026-02-13T20:41:57.409Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 363.9
+      },
+      "10963530672": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Barbaros, Sakarya Sk. No:2 İşyeri 2",
+          "addressDescription": "Yılmaz market karşısında iş yeri",
+          "email": "placeholder@trendyol.com",
+          "firstName": "Mertol",
+          "lastName": "O.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Barbaros, Sakarya Sk. No:2 İşyeri 2",
+          "addressNote": "Servis İstiyorum",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10963530672",
+        "id": "10963530672",
+        "integrationOrderId": "10963530672",
+        "meta": {
+          "clickingTime": "2026-02-13T21:04:49.352Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-13T21:04:49.352Z",
+          "integrationOrderId": "10963530672",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "008",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "008",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "5'li Tenders",
+            "orderItemPrice": "399,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(50 cl)",
+            "orderItemName": "Su",
+            "orderItemPrice": "29,90₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-13T21:04:49.352Z",
+          "paymentType": "PAID",
+          "price": 304.8
+        },
+        "receivedAt": "2026-02-13T21:04:49.929Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 304.8
+      },
+      "10963698915": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Barbaros, Gazi Osman Paşa Sk. No:8",
+          "addressDescription": "İsmet bey apartmanı",
+          "email": "placeholder@trendyol.com",
+          "firstName": "Muhammet",
+          "lastName": "D.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Barbaros, Gazi Osman Paşa Sk. No:8",
+          "addressNote": "!LÜTFEN KAPIYI ÇALMAYIN! Gelince arayabilirsiniz. - Servis İstiyorum - Temassız Teslimat İstiyorum - Zile Basma",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10963698915",
+        "id": "10963698915",
+        "integrationOrderId": "10963698915",
+        "meta": {
+          "clickingTime": "2026-02-13T22:40:22.971Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-13T22:40:22.971Z",
+          "integrationOrderId": "10963698915",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "009",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "009",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(NFC tavuk burger, el yapımı ranch sos, turşu,cheddar peynir, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Golden Rancher Burger Menü",
+            "orderItemPrice": "399,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Tatlı Acı Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "Pepsi Pet (33 cl)",
+            "orderItemPrice": "89,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-13T22:40:22.971Z",
+          "paymentType": "PAID",
+          "price": 363.9
+        },
+        "receivedAt": "2026-02-13T22:40:23.545Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 363.9
+      },
+      "10963743593": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "Barbaros Ceviz Sk. No:39 Merkez kat:1",
+          "addressDescription": "-",
+          "email": "placeholder@trendyol.com",
+          "firstName": "kubilay",
+          "lastName": "a.",
+          "phone": "0212 365 34 03"
+        },
+        "delivery": {
+          "address": "Barbaros Ceviz Sk. No:39 Merkez kat:1",
+          "addressNote": "Servis İstiyorum - Temassız Teslimat İstiyorum - Zile Basma",
+          "distance": 1500,
+          "duration": 10,
+          "latitude": 0,
+          "longitude": 0
+        },
+        "firebaseId": "10963743593",
+        "id": "10963743593",
+        "integrationOrderId": "10963743593",
+        "meta": {
+          "clickingTime": "2026-02-13T23:32:23.292Z",
+          "cookingTime": 10,
+          "creationDate": "2026-02-13T23:32:23.292Z",
+          "integrationOrderId": "10963743593",
+          "integrationType": "EXTENSION",
+          "orderCardNumber": "00A",
+          "platform": "TRENDYOLYEMEK",
+          "status": "NEW",
+          "warmthType": "HOT"
+        },
+        "orderCardNumber": "00A",
+        "orderItems": [
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "5'li Tenders",
+            "orderItemPrice": "399,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Sarımsaklı Mayonez Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Tatlı Acı Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "(NFC tavuk burger, el yapımı sarımsaklı mayonez, marul, jalapeno, patates kızartması, seçilen 2 sos)",
+            "orderItemName": "Garlic Heat Burger Menü",
+            "orderItemPrice": "399,90₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Ballı Hardal Sos",
+            "orderItemPrice": "0,00₺"
+          },
+          {
+            "orderItemCount": 1,
+            "orderItemDescription": "",
+            "orderItemName": "El Yapımı Kam Acı Sos",
+            "orderItemPrice": "0,00₺"
+          }
+        ],
+        "orderPayment": {
+          "date": "2026-02-13T23:32:23.292Z",
+          "paymentType": "PAID",
+          "price": 624.8
+        },
+        "receivedAt": "2026-02-13T23:32:23.869Z",
+        "storeId": "318920",
+        "storeName": "Trendyol Yemek",
+        "totalOrderPrice": 624.8
+      }
+    },
+    "mock_store": {
+      "-OkuwTZATd3VpnU30xxU": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "İsmetpaşa, 17100 Çanakkale Merkez/Çanakkale",
+          "addressDescription": "Near the Clock Tower",
+          "email": "john.doe@example.com",
+          "firstName": "Simulated",
+          "lastName": "User",
+          "latitude": 40.15,
+          "longitude": 26.41,
+          "phone": "555-0199"
+        },
+        "delivery": {
+          "address": "İsmetpaşa, 17100 Çanakkale Merkez/Çanakkale",
+          "addressNote": "Leave at door",
+          "distance": 1500,
+          "duration": 15,
+          "latitude": 40.15,
+          "longitude": 26.41
+        },
+        "firebaseId": "-OkuwTZATd3VpnU30xxU",
+        "foods": [
+          {
+            "name": "Simulated Burger",
+            "price": 50,
+            "quantity": 2
+          },
+          {
+            "name": "Virtual Fries",
+            "price": 50,
+            "quantity": 1
+          }
+        ],
+        "id": "SIM-1770515451315",
+        "integrationOrderId": "INT-1770515451315",
+        "meta": {
+          "clickingTime": "2026-02-08T01:50:51.315Z",
+          "cookingTime": 20,
+          "creationDate": "2026-02-08T01:50:51.315Z",
+          "integrationOrderId": "INT-1770515451315",
+          "integrationType": "SIMULATION",
+          "platform": "Trendyol",
+          "status": "Created",
+          "warmthType": "Hot"
+        },
+        "orderPayment": {
+          "date": "2026-02-08T01:50:51.315Z",
+          "paymentType": "Cash",
+          "price": 150
+        },
+        "receivedAt": "2026-02-08T01:50:51.317Z",
+        "storeId": "mock_store",
+        "storeName": "Simulation Store",
+        "totalOrderPrice": 150
+      },
+      "-OkuwXCeDUu2jQjJ8YOv": {
+        "currency": {
+          "code": "TRY",
+          "symbol": "₺"
+        },
+        "customer": {
+          "address": "İsmetpaşa, 17100 Çanakkale Merkez/Çanakkale",
+          "addressDescription": "Near the Clock Tower",
+          "email": "john.doe@example.com",
+          "firstName": "Simulated",
+          "lastName": "User",
+          "latitude": 40.15,
+          "longitude": 26.41,
+          "phone": "555-0199"
+        },
+        "delivery": {
+          "address": "İsmetpaşa, 17100 Çanakkale Merkez/Çanakkale",
+          "addressNote": "Leave at door",
+          "distance": 1500,
+          "duration": 15,
+          "latitude": 40.15,
+          "longitude": 26.41
+        },
+        "firebaseId": "-OkuwXCeDUu2jQjJ8YOv",
+        "foods": [
+          {
+            "name": "Simulated Burger",
+            "price": 50,
+            "quantity": 2
+          },
+          {
+            "name": "Virtual Fries",
+            "price": 50,
+            "quantity": 1
+          }
+        ],
+        "id": "SIM-1770515466259",
+        "integrationOrderId": "INT-1770515466259",
+        "meta": {
+          "clickingTime": "2026-02-08T01:51:06.259Z",
+          "cookingTime": 20,
+          "creationDate": "2026-02-08T01:51:06.259Z",
+          "integrationOrderId": "INT-1770515466259",
+          "integrationType": "SIMULATION",
+          "platform": "Trendyol",
+          "status": "Created",
+          "warmthType": "Hot"
+        },
+        "orderPayment": {
+          "date": "2026-02-08T01:51:06.259Z",
+          "paymentType": "Cash",
+          "price": 150
+        },
+        "receivedAt": "2026-02-08T01:51:06.260Z",
+        "storeId": "mock_store",
+        "storeName": "Simulation Store",
+        "totalOrderPrice": 150
+      }
+    }
+  },
+  "restaurantUsers": {
+    "23efasdf": {
+      "email": "nfcompany17@gmail.com",
+      "restaurantKeys": {
+        "restaurantKey": 318920
+      },
+      "restaurantsRelated": {
+        "key": "key_nfc"
+      },
+      "role": "OWNER"
+    },
+    "asdfsadfijl": {
+      "email": "wikiwings17@gmail.com",
+      "restaurantKeys": {
+        "restaurantKey": 318920
+      },
+      "restaurantsRelated": {
+        "key": "key_nfc"
+      },
+      "role": "OWNER"
+    },
+    "sdfasdf": {
+      "email": "troyatech17@gmail.com",
+      "restaurantKeys": {
+        "restaurantKey": 318920
+      },
+      "restaurantsRelated": {
+        "key": "key_nfc"
+      },
+      "role": "OWNER"
+    }
+  },
+  "restaurants": {
+    "23rwefsdfa": {
+      "restaurantKey": 318920,
+      "restaurantName": "NFC"
+    }
+  },
+  "stores": {
+    "318920": {
+      "address": "Cevat Paşa, Kayserili Ahmet Paşa Cd., 17100 Çanakkale Merkez/Çanakkale",
+      "addressId": 500,
+      "city": "Canakkale",
+      "currency": {
+        "code": "TRY",
+        "symbol": "₺"
+      },
+      "defaultCookingTime": 20,
+      "id": "318920",
+      "isActive": true,
+      "locationLat": 40.147140757277356,
+      "locationLng": 26.412926195189147,
+      "name": "NFC Burger",
+      "organizationalType": "BRICK_AND_MORTAR",
+      "ownerId": "AIDPRmbJU3hlJUH3KdkizXmiA2Y2",
+      "updatedAt": 1678900000000
+    }
+  }
+}
