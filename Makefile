@@ -41,4 +41,4 @@ test-ui:
 
 # Run UI smoke test on device (Native/Espresso — requires connected device)
 test-ui-native:
-	cd android && gradlew app:connectedDebugAndroidTest -Ptarget=integration_test/ui_integration_test.dart
+	cd android && gradlew app:connectedUatDebugAndroidTest -Ptarget=integration_test/ui_integration_test.dart
