@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:rodb_delivery_app/features/auth-feature/application/auth_providers.dart';
 import 'package:rodb_delivery_app/features/restaurant-user-feature/application/restaurant_user_providers.dart';
+import 'package:rodb_delivery_app/features/store-feature/application/store_service.dart';
+import 'package:rodb_delivery_app/features/store-feature/domain/store.dart';
 import 'package:rodb_delivery_app/utils/app_logger.dart';
 
 import 'profile_page_view_model.dart';
@@ -85,9 +87,18 @@ final profilePageFacadeProvider = Provider<ProfilePageState>((ref) {
         },
         data: (restaurantUser) {
           logger.data('Restaurant user loaded', restaurantUser?.uid);
+
+          // Resolve store data for each restaurant key
+          final Map<String, Store?> stores = {};
+          for (final key in restaurantUser?.restaurantKeys ?? <String>[]) {
+            final storeAsync = ref.watch(storeStreamProvider(key));
+            stores[key] = storeAsync.valueOrNull;
+          }
+
           final viewModel = ProfilePageViewModel.fromDomain(
             authUser: authUser,
             restaurantUser: restaurantUser,
+            stores: stores,
           );
           return ProfilePageLoaded(viewModel);
         },

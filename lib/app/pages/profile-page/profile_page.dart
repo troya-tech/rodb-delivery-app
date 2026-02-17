@@ -86,10 +86,11 @@ class ProfilePage extends ConsumerWidget {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
-                  ...vm.restaurantKeys.map((key) => Card(
+                  ...vm.restaurants.map((info) => Card(
                         child: ListTile(
                           leading: const Icon(Icons.restaurant),
-                          title: Text(key),
+                          title: Text(info.name),
+                          subtitle: Text(info.key),
                         ),
                       )),
                 ],
