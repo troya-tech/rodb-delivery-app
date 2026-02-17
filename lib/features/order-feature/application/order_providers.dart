@@ -9,8 +9,8 @@ final orderRepositoryProvider = Provider<OrderRepository>((ref) {
   return OrderService.instance;
 });
 
-/// StreamProvider for all orders linked to the current user's restaurants
-final ordersStreamProvider = StreamProvider<List<Order>>((ref) {
+/// Internal provider for all orders (raw stream)
+final _allOrdersStreamProvider = StreamProvider<List<Order>>((ref) {
   final restaurantUserAsync = ref.watch(currentRestaurantUserProvider);
   
   return restaurantUserAsync.when(
@@ -23,6 +23,22 @@ final ordersStreamProvider = StreamProvider<List<Order>>((ref) {
     },
     loading: () => const Stream.empty(),
     error: (err, stack) => Stream.error(err),
+  );
+});
+
+/// Provider for active (not delivered) orders
+final activeOrdersStreamProvider = Provider<AsyncValue<List<Order>>>((ref) {
+  final allOrders = ref.watch(_allOrdersStreamProvider);
+  return allOrders.whenData((orders) => 
+    orders.where((o) => !o.meta.isDelivered).toList()
+  );
+});
+
+/// Provider for delivered orders
+final deliveredOrdersStreamProvider = Provider<AsyncValue<List<Order>>>((ref) {
+  final allOrders = ref.watch(_allOrdersStreamProvider);
+  return allOrders.whenData((orders) => 
+    orders.where((o) => o.meta.isDelivered).toList()
   );
 });
 

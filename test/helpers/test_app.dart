@@ -83,7 +83,7 @@ class TestHarness {
   ///
   /// Uses [AppRouter.generateRoute] for named-route navigation so that
   /// `Navigator.pushNamed('/order-details')` etc. work correctly in tests.
-  Widget buildApp() {
+  Widget buildApp({String? initialRoute}) {
     return ProviderScope(
       overrides: _providerOverrides,
       child: MaterialApp(
@@ -91,7 +91,7 @@ class TestHarness {
         supportedLocales: AppLocalizations.supportedLocales,
         locale: const Locale('tr'),
         onGenerateRoute: AppRouter.generateRoute,
-        initialRoute: AppRoutes.authGate,
+        initialRoute: initialRoute ?? AppRoutes.authGate,
       ),
     );
   }

@@ -11,7 +11,7 @@ class OrdersPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ordersAsync = ref.watch(ordersStreamProvider);
+    final ordersAsync = ref.watch(activeOrdersStreamProvider);
 
     return Scaffold(
       appBar: AppBar(
