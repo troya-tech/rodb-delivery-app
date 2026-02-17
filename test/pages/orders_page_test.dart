@@ -192,10 +192,14 @@ void main() {
         (tester) async {
       await signInAndShowOrders(tester);
 
-      // Subtitle format: "CustomerName · PaymentType"
-      expect(find.text('Emirhan K. · PAID'), findsOneWidget);
-      expect(find.text('Mutlu Ç. · PAID'), findsOneWidget);
-      expect(find.text('İnanç M. · PAID'), findsOneWidget);
+      // Verify names are present
+      expect(find.text('Emirhan K.'), findsOneWidget);
+      expect(find.text('Mutlu Ç.'), findsOneWidget);
+      expect(find.text('İnanç M.'), findsOneWidget);
+
+      // Verify payment types are present (in badge)
+      // All 3 fixture orders are 'PAID'
+      expect(find.text('PAID'), findsNWidgets(3));
     });
 
     testWidgets('Empty orders shows "Sipariş bulunamadı"', (tester) async {

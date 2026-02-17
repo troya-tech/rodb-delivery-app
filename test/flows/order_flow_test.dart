@@ -66,15 +66,16 @@ void main() {
 
       // Order 1: card "007", customer "Emirhan K.", payment "PAID"
       expect(find.text('Sipariş #007'), findsOneWidget);
-      expect(find.text('Emirhan K. · PAID'), findsOneWidget);
+      expect(find.text('Emirhan K.'), findsOneWidget);
+      expect(find.text('PAID'), findsNWidgets(3)); // All defaults are PAID
 
       // Order 2: card "00E", customer "Mutlu Ç.", payment "PAID"
       expect(find.text('Sipariş #00E'), findsOneWidget);
-      expect(find.text('Mutlu Ç. · PAID'), findsOneWidget);
+      expect(find.text('Mutlu Ç.'), findsOneWidget);
 
       // Order 3: card "004", customer "İnanç M.", payment "PAID"
       expect(find.text('Sipariş #004'), findsOneWidget);
-      expect(find.text('İnanç M. · PAID'), findsOneWidget);
+      expect(find.text('İnanç M.'), findsOneWidget);
     });
 
     testWidgets('Empty orders shows "Sipariş bulunamadı"', (tester) async {

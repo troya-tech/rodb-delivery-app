@@ -11,11 +11,12 @@ class MapLauncherImpl implements MapLauncher {
   }) async {
     final encodedAddress = Uri.encodeComponent(address);
     
-    // Google Maps Search URL using address
-    final googleMapsUrl = Uri.parse('https://www.google.com/maps/search/?api=1&query=$encodedAddress');
+    // Google Maps Search URL using coordinates for precision
+    final googleMapsUrl = Uri.parse('https://www.google.com/maps/search/?api=1&query=$latitude,$longitude');
     
-    // Apple Maps Search URL using address
-    final appleMapsUrl = Uri.parse('https://maps.apple.com/?q=$encodedAddress');
+    // Apple Maps Search URL using coordinates
+    // Using ll (lat,long) puts a pin at the location, q (label) labels it
+    final appleMapsUrl = Uri.parse('https://maps.apple.com/?ll=$latitude,$longitude&q=$encodedAddress');
 
     try {
       if (await canLaunchUrl(googleMapsUrl)) {
@@ -23,8 +24,8 @@ class MapLauncherImpl implements MapLauncher {
       } else if (await canLaunchUrl(appleMapsUrl)) {
         await launchUrl(appleMapsUrl, mode: LaunchMode.externalApplication);
       } else {
-        // Fallback to coordinates if address search fails (unlikely)
-        final geoUrl = Uri.parse('geo:$latitude,$longitude?q=$encodedAddress');
+        // Fallback to coordinates
+        final geoUrl = Uri.parse('geo:$latitude,$longitude?q=$latitude,$longitude');
         
         if (await canLaunchUrl(geoUrl)) {
           await launchUrl(geoUrl, mode: LaunchMode.externalApplication);
