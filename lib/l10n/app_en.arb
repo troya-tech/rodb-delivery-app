@@ -114,6 +114,10 @@
       }
     }
   },
-  "orderItems": "Order Items"
+  "orderItems": "Order Items",
+  "markAsDelivered": "Mark as Delivered",
+  "markAsDeliveredConfirmation": "Are you sure you want to mark this order as delivered?",
+  "confirm": "Confirm",
+  "delivered": "Delivered"
 }
 

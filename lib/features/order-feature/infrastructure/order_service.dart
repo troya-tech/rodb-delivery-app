@@ -34,6 +34,22 @@ class OrderService implements OrderRepository {
   }
 
   @override
+  Future<void> markAsDelivered(String orderId) async {
+    _logger.info('Marking order $orderId as delivered');
+    // Search across all store paths for this order
+    final snapshot = await _db.ref('orders').get();
+    if (!snapshot.exists) return;
+    final stores = snapshot.value as Map<Object?, Object?>;
+    for (final storeEntry in stores.entries) {
+      final storeData = storeEntry.value as Map<Object?, Object?>?;
+      if (storeData != null && storeData.containsKey(orderId)) {
+        await _db.ref('orders/${storeEntry.key}/$orderId/meta/isDelivered').set(true);
+        return;
+      }
+    }
+  }
+
+  @override
   Stream<List<Order>> watchOrders() {
     _logger.info('Watching orders (generic)');
     return const Stream.empty();

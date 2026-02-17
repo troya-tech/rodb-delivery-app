@@ -74,6 +74,21 @@ class FakeOrderRepository implements OrderRepository {
   }
 
   @override
+  Future<void> markAsDelivered(String orderId) async {
+    for (final storeOrders in _ordersByStore.values) {
+      final index = storeOrders.indexWhere((o) => o.id == orderId);
+      if (index >= 0) {
+        final order = storeOrders[index];
+        storeOrders[index] = order.copyWith(
+          meta: order.meta.copyWith(isDelivered: true),
+        );
+        _emitMerged();
+        return;
+      }
+    }
+  }
+
+  @override
   Stream<List<Order>> watchOrders() {
     return _ordersSubject.stream;
   }

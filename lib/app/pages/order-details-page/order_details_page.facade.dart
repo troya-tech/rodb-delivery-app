@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rodb_delivery_app/features/map-feature/application/map_providers.dart';
 import 'package:rodb_delivery_app/features/map-feature/domain/address.dart';
+import 'package:rodb_delivery_app/features/order-feature/application/order_providers.dart';
 import 'package:rodb_delivery_app/features/order-feature/domain/order.dart';
 
 import 'order_details_page_view_model.dart';
@@ -46,4 +47,14 @@ Future<void> orderDetailsPageOpenMaps(
   );
 
   await mapService.launchMapForAddress(orderAddress);
+}
+
+/// Marks the order as delivered by updating the repository.
+Future<void> orderDetailsPageMarkAsDelivered(
+  WidgetRef ref,
+  OrderDetailsPageViewModel viewModel,
+) async {
+  final order = viewModel.domainOrder;
+  final repo = ref.read(orderRepositoryProvider);
+  await repo.markAsDelivered(order.id);
 }

@@ -4,8 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:rodb_delivery_app/app/pages/login-page/login_page.dart';
 import 'package:rodb_delivery_app/app/pages/orders-page/orders-page.dart';
 import 'package:rodb_delivery_app/app/pages/order-details-page/order_details_page.dart';
-import 'package:rodb_delivery_app/features/order-feature/domain/order.dart';
-import 'package:rodb_delivery_app/features/order-feature/domain/order_meta.dart';
+
 import 'package:rodb_delivery_app/testing/order_fixtures.dart';
 import 'package:rodb_delivery_app/testing/restaurant_user_fixtures.dart';
 
@@ -153,7 +152,7 @@ void main() {
 
       // 2. Delivery info
       expect(find.textContaining('Barbaros'), findsOneWidget); // Address
-      expect(find.textContaining('-'), findsOneWidget); // Note (addressDescription)
+      expect(find.text('Not: -'), findsOneWidget); // Note (addressDescription)
 
       // 3. Meta info
       expect(find.textContaining('TRENDYOLYEMEK'), findsOneWidget);
@@ -163,36 +162,4 @@ void main() {
 }
 
 /// Helper to allow adding new fields/variants easily in tests
-extension OrderTestExtensions on Order {
-  Order copyWith({String? id, String? orderCardNumber}) {
-    return Order(
-      id: id ?? this.id,
-      storeName: storeName,
-      customer: customer,
-      orderPayment: orderPayment,
-      orderItems: orderItems,
-      delivery: delivery,
-      meta: meta.copyWith(orderCardNumber: orderCardNumber ?? meta.orderCardNumber),
-      totalOrderPrice: totalOrderPrice,
-      currency: currency,
-      integrationOrderId: integrationOrderId,
-      orderCardNumber: orderCardNumber ?? this.orderCardNumber,
-    );
-  }
-}
-
-extension OrderMetaTestExtensions on OrderMeta {
-  OrderMeta copyWith({String? orderCardNumber}) {
-    return OrderMeta(
-      integrationOrderId: integrationOrderId,
-      integrationType: integrationType,
-      platform: platform,
-      creationDate: creationDate,
-      clickingTime: clickingTime,
-      warmthType: warmthType,
-      cookingTime: cookingTime,
-      status: status,
-      orderCardNumber: orderCardNumber ?? this.orderCardNumber,
-    );
-  }
-}
+/// NOTE: copyWith is now available directly on Order and OrderMeta domain classes.

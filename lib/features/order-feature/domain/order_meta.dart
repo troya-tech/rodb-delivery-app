@@ -10,6 +10,7 @@ class OrderMeta extends Equatable {
   final int cookingTime;
   final dynamic status;
   final String orderCardNumber;
+  final bool isDelivered;
 
   const OrderMeta({
     required this.integrationOrderId,
@@ -21,6 +22,7 @@ class OrderMeta extends Equatable {
     required this.cookingTime,
     required this.status,
     required this.orderCardNumber,
+    this.isDelivered = false,
   });
 
   factory OrderMeta.fromMap(Map<Object?, Object?> map) {
@@ -34,6 +36,7 @@ class OrderMeta extends Equatable {
       cookingTime: (map['cookingTime'] as num?)?.toInt() ?? 0,
       status: map['status'],
       orderCardNumber: map['orderCardNumber'] as String? ?? '',
+      isDelivered: map['isDelivered'] as bool? ?? false,
     );
   }
 
@@ -48,7 +51,34 @@ class OrderMeta extends Equatable {
       'cookingTime': cookingTime,
       'status': status,
       'orderCardNumber': orderCardNumber,
+      'isDelivered': isDelivered,
     };
+  }
+
+  OrderMeta copyWith({
+    String? integrationOrderId,
+    String? integrationType,
+    String? platform,
+    String? creationDate,
+    String? clickingTime,
+    String? warmthType,
+    int? cookingTime,
+    dynamic status,
+    String? orderCardNumber,
+    bool? isDelivered,
+  }) {
+    return OrderMeta(
+      integrationOrderId: integrationOrderId ?? this.integrationOrderId,
+      integrationType: integrationType ?? this.integrationType,
+      platform: platform ?? this.platform,
+      creationDate: creationDate ?? this.creationDate,
+      clickingTime: clickingTime ?? this.clickingTime,
+      warmthType: warmthType ?? this.warmthType,
+      cookingTime: cookingTime ?? this.cookingTime,
+      status: status ?? this.status,
+      orderCardNumber: orderCardNumber ?? this.orderCardNumber,
+      isDelivered: isDelivered ?? this.isDelivered,
+    );
   }
 
   @override
@@ -62,5 +92,6 @@ class OrderMeta extends Equatable {
         cookingTime,
         status,
         orderCardNumber,
+        isDelivered,
       ];
 }

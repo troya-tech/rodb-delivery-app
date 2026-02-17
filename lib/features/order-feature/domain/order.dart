@@ -67,6 +67,34 @@ class Order extends Equatable {
     );
   }
 
+  Order copyWith({
+    String? id,
+    String? storeName,
+    Customer? customer,
+    OrderPayment? orderPayment,
+    List<OrderItem>? orderItems,
+    OrderDelivery? delivery,
+    OrderMeta? meta,
+    double? totalOrderPrice,
+    OrderCurrency? currency,
+    String? integrationOrderId,
+    String? orderCardNumber,
+  }) {
+    return Order(
+      id: id ?? this.id,
+      storeName: storeName ?? this.storeName,
+      customer: customer ?? this.customer,
+      orderPayment: orderPayment ?? this.orderPayment,
+      orderItems: orderItems ?? this.orderItems,
+      delivery: delivery ?? this.delivery,
+      meta: meta ?? this.meta,
+      totalOrderPrice: totalOrderPrice ?? this.totalOrderPrice,
+      currency: currency ?? this.currency,
+      integrationOrderId: integrationOrderId ?? this.integrationOrderId,
+      orderCardNumber: orderCardNumber ?? this.orderCardNumber,
+    );
+  }
+
   @override
   List<Object?> get props => [
         id,

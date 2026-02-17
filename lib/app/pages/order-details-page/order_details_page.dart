@@ -96,11 +96,76 @@ class OrderDetailsPage extends ConsumerWidget {
                     ],
                   ),
                 ),
+                const SizedBox(height: 24),
+                const Divider(),
+                const SizedBox(height: 16),
+
+                // Mark as Delivered
+                if (viewModel.isDelivered)
+                  Center(
+                    child: Chip(
+                      avatar: const Icon(Icons.check_circle, color: Colors.white),
+                      label: Text(
+                        AppLocalizations.of(context)!.delivered,
+                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                      backgroundColor: Colors.green,
+                    ),
+                  )
+                else
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton.icon(
+                        onPressed: () => _showMarkAsDeliveredDialog(context, ref, viewModel),
+                        icon: const Icon(Icons.check_circle_outline),
+                        label: Text(AppLocalizations.of(context)!.markAsDelivered),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                        ),
+                      ),
+                    ),
+                  ),
                 const SizedBox(height: 32),
               ],
             ),
           ),
       },
+    );
+  }
+
+  void _showMarkAsDeliveredDialog(
+    BuildContext context,
+    WidgetRef ref,
+    OrderDetailsPageViewModel viewModel,
+  ) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.markAsDelivered),
+        content: Text(AppLocalizations.of(context)!.markAsDeliveredConfirmation),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: Text(AppLocalizations.of(context)!.cancel),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(dialogContext).pop();
+              orderDetailsPageMarkAsDelivered(ref, viewModel);
+              Navigator.of(context).pop();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+              foregroundColor: Colors.white,
+            ),
+            child: Text(AppLocalizations.of(context)!.confirm),
+          ),
+        ],
+      ),
     );
   }
 

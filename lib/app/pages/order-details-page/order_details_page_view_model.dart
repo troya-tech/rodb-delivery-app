@@ -57,6 +57,9 @@ class OrderDetailsPageViewModel extends Equatable {
   // Domain access (optional but useful for actions)
   final Order domainOrder;
 
+  // Delivery status
+  final bool isDelivered;
+
   const OrderDetailsPageViewModel({
     required this.orderNumberLabel,
     required this.totalPrice,
@@ -78,6 +81,7 @@ class OrderDetailsPageViewModel extends Equatable {
     required this.creationDate,
     required this.integrationOrderId,
     required this.domainOrder,
+    required this.isDelivered,
   });
 
   /// Factory to map domain [Order] to this view model.
@@ -112,6 +116,7 @@ class OrderDetailsPageViewModel extends Equatable {
       creationDate: order.meta.creationDate,
       integrationOrderId: order.integrationOrderId,
       domainOrder: order,
+      isDelivered: order.meta.isDelivered,
     );
   }
 
@@ -138,5 +143,6 @@ class OrderDetailsPageViewModel extends Equatable {
         creationDate,
         integrationOrderId,
         domainOrder,
+        isDelivered,
       ];
 }
