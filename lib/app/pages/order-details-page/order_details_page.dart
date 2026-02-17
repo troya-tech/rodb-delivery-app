@@ -73,6 +73,16 @@ class OrderDetailsPage extends ConsumerWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    '📍 ${viewModel.latitude.toStringAsFixed(6)}, ${viewModel.longitude.toStringAsFixed(6)}',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Colors.grey,
+                        ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: SizedBox(
                     width: double.infinity,
                     child: OutlinedButton.icon(

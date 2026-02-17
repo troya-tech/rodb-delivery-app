@@ -38,10 +38,12 @@ class MapLauncherImpl implements MapLauncher {
         }
       }
 
-      // Fallback (web or if native intents fail): Google Maps search by
-      // address text so it geocodes to the right place.
+      // Fallback (web or if native intents fail): prefer coordinates so the
+      // pin lands on the exact spot; fall back to address text.
+      final hasCoordinates = latitude != 0.0 || longitude != 0.0;
+      final query = hasCoordinates ? '$latitude,$longitude' : encodedAddress;
       final googleMapsUrl = Uri.parse(
-        'https://www.google.com/maps/search/?api=1&query=$encodedAddress',
+        'https://www.google.com/maps/search/?api=1&query=$query',
       );
       await launchUrl(googleMapsUrl, mode: LaunchMode.platformDefault);
     } catch (e) {
