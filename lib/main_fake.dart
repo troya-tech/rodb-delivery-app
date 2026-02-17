@@ -3,6 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rodb_delivery_app/features/auth-feature/application/auth_providers.dart';
 import 'package:rodb_delivery_app/features/auth-feature/infrastructure/fake_auth_repository.implementation.dart';
+import 'package:rodb_delivery_app/features/restaurant-user-feature/application/restaurant_user_providers.dart';
+import 'package:rodb_delivery_app/features/restaurant-user-feature/infrastructure/fake_restaurant_user_repository.implementation.dart';
+import 'package:rodb_delivery_app/features/store-feature/application/store_service.dart';
+import 'package:rodb_delivery_app/features/store-feature/infrastructure/fake_store_repository.implementation.dart';
 import 'firebase_options_uat.dart' as firebase_uat;
 import 'main.dart';
 
@@ -22,11 +26,16 @@ Future<void> main() async {
     );
   }
 
+  final fakeRestaurantUser = FakeRestaurantUserRepository();
+  final fakeStore = FakeStoreRepository();
+
   runApp(
     ProviderScope(
       overrides: [
-        // Inject the Fake implementation at the root
+        // Inject the Fake implementations at the root
         authRepositoryProvider.overrideWithValue(FakeAuthRepository()),
+        restaurantUserRepositoryProvider.overrideWithValue(fakeRestaurantUser),
+        storeRepositoryProvider.overrideWithValue(fakeStore),
       ],
       child: const MyApp(),
     ),

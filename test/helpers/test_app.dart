@@ -11,6 +11,7 @@ import 'package:rodb_delivery_app/features/restaurant-user-feature/application/r
 import 'package:rodb_delivery_app/features/restaurant-user-feature/infrastructure/fake_restaurant_user_repository.implementation.dart';
 import 'package:rodb_delivery_app/features/store-feature/application/store_service.dart';
 import 'package:rodb_delivery_app/features/store-feature/infrastructure/fake_store_repository.implementation.dart';
+import 'package:rodb_delivery_app/features/restaurant-user-feature/presentation/user_profile_screen.dart';
 
 /// Convenience constant for the standard test user.
 const AuthUser fakeAuthUser = AuthFixtures.testUser;
@@ -77,6 +78,26 @@ class TestHarness {
   /// The app starts at [AuthGatePage] (the '/' route), which routes to
   /// [LoginPage] or [OrdersPage] based on auth state.
   Widget buildApp() {
+    return _wrapWithProviders(const AuthGatePage());
+  }
+
+  /// Builds a test app that starts directly on [UserProfileScreen]
+  /// with the user already authenticated.
+  ///
+  /// Uses a user WITHOUT [photoUrl] to avoid [NetworkImage] HTTP 400 errors
+  /// in the test environment. Testing the avatar image is a Flutter framework
+  /// concern, not our business logic.
+  Widget buildProfileApp() {
+    const testUserNoPhoto = AuthUser(
+      uid: '7UMNf9av9YZSU4fUx17D5IGHG6I2',
+      email: 'foorcun@gmail.com',
+      displayName: 'Furkan Fake',
+    );
+    fakeAuth.emitUser(testUserNoPhoto);
+    return _wrapWithProviders(const UserProfileScreen());
+  }
+
+  Widget _wrapWithProviders(Widget home) {
     return ProviderScope(
       overrides: [
         authRepositoryProvider.overrideWithValue(fakeAuth),
@@ -87,7 +108,7 @@ class TestHarness {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         locale: const Locale('tr'),
-        home: const AuthGatePage(),
+        home: home,
       ),
     );
   }
