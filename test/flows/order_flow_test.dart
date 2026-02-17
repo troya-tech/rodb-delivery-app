@@ -4,7 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:rodb_delivery_app/app/pages/login-page/login_page.dart';
 import 'package:rodb_delivery_app/app/pages/orders-page/orders-page.dart';
 import 'package:rodb_delivery_app/app/pages/order-details-page/order_details_page.dart';
+import 'package:rodb_delivery_app/features/order-feature/domain/order.dart';
+import 'package:rodb_delivery_app/features/order-feature/domain/order_meta.dart';
 import 'package:rodb_delivery_app/testing/order_fixtures.dart';
+import 'package:rodb_delivery_app/testing/restaurant_user_fixtures.dart';
 
 import '../helpers/test_app.dart';
 import '../helpers/pump_helpers.dart';
@@ -58,21 +61,21 @@ void main() {
       expect(find.byType(ListTile), findsNWidgets(3));
     });
 
-    testWidgets('Each order tile shows card number and customer name',
+    testWidgets('Each order tile shows card number, customer name, and payment type',
         (tester) async {
       await signInAndShowOrders(tester);
 
-      // Order 1: card "007", customer "Emirhan K."
+      // Order 1: card "007", customer "Emirhan K.", payment "PAID"
       expect(find.text('Sipariş #007'), findsOneWidget);
-      expect(find.text('Emirhan K.'), findsOneWidget);
+      expect(find.text('Emirhan K. · PAID'), findsOneWidget);
 
-      // Order 2: card "00E", customer "Mutlu Ç."
+      // Order 2: card "00E", customer "Mutlu Ç.", payment "PAID"
       expect(find.text('Sipariş #00E'), findsOneWidget);
-      expect(find.text('Mutlu Ç.'), findsOneWidget);
+      expect(find.text('Mutlu Ç. · PAID'), findsOneWidget);
 
-      // Order 3: card "004", customer "İnanç M."
+      // Order 3: card "004", customer "İnanç M.", payment "PAID"
       expect(find.text('Sipariş #004'), findsOneWidget);
-      expect(find.text('İnanç M.'), findsOneWidget);
+      expect(find.text('İnanç M. · PAID'), findsOneWidget);
     });
 
     testWidgets('Empty orders shows "Sipariş bulunamadı"', (tester) async {
@@ -84,7 +87,47 @@ void main() {
     });
   });
 
-  group('Orders — Navigation to Details', () {
+  group('Orders — Real-time Updates & Filtering', () {
+    testWidgets('New orders appearing in stream are reflected in list',
+        (tester) async {
+      await signInAndShowOrders(tester);
+
+      // Initially 3 orders
+      expect(find.byType(ListTile), findsNWidgets(3));
+
+      // Add a 4th order to the fake repository
+      final newOrder = OrderFixtures.testOrder1.copyWith(
+        id: 'new-999',
+        orderCardNumber: '999',
+      );
+      harness.fakeOrder.addOrder(OrderFixtures.storeId, newOrder);
+      await pumpAndFlush(tester);
+
+      // Verify list updated to 4 orders
+      expect(find.byType(ListTile), findsNWidgets(4));
+      expect(find.text('Sipariş #999'), findsOneWidget);
+    });
+
+    testWidgets('Only shows orders for the current user\'s stores',
+        (tester) async {
+      await signInAndShowOrders(tester);
+
+      // Default fixture user has access to store '318920' (has 3 orders)
+      expect(find.byType(ListTile), findsNWidgets(3));
+
+      // Change user to a store with NO orders
+      final testUser = RestaurantUserFixtures.testUser4;
+      harness.fakeRestaurantUser.emitUser(
+        testUser.copyWith(restaurantKeys: ['empty-store-123']),
+      );
+      await pumpAndFlush(tester);
+
+      // Verify list is now empty
+      expect(find.text('Sipariş bulunamadı'), findsOneWidget);
+    });
+  });
+
+  group('Orders — Navigation & Details', () {
     testWidgets('Tapping an order navigates to OrderDetailsPage',
         (tester) async {
       await signInAndShowOrders(tester);
@@ -96,51 +139,60 @@ void main() {
       expect(find.byType(OrderDetailsPage), findsOneWidget);
     });
 
-    testWidgets('Details page shows correct order card number in AppBar',
+    testWidgets('Details page shows payment, delivery, and metadata accurately',
         (tester) async {
       await signInAndShowOrders(tester);
 
-      await tester.tap(find.byType(ListTile).first);
+      // Tap Order 3 (Inanç M.) which is newest/first
+      await tester.tap(find.textContaining('İnanç M.'));
       await pumpAndFlush(tester);
 
-      // Verify we're on OrderDetailsPage
-      expect(find.byType(OrderDetailsPage), findsOneWidget);
-    });
-
-    testWidgets('Details page shows payment type and total price',
-        (tester) async {
-      await signInAndShowOrders(tester);
-
-      await tester.tap(find.byType(ListTile).first);
-      await pumpAndFlush(tester);
-
-      // Verify payment type and price are visible
+      // 1. Payment info
       expect(find.textContaining('PAID'), findsOneWidget);
-    });
+      expect(find.textContaining('599.8'), findsOneWidget);
 
-    testWidgets('Details page shows delivery address and note',
-        (tester) async {
-      await signInAndShowOrders(tester);
+      // 2. Delivery info
+      expect(find.textContaining('Barbaros'), findsOneWidget); // Address
+      expect(find.textContaining('-'), findsOneWidget); // Note (addressDescription)
 
-      await tester.tap(find.byType(ListTile).first);
-      await pumpAndFlush(tester);
-
-      // Order 3 (newest, first in list) has address containing "Barbaros"
-      // and note containing "Ranch sosu"
-      expect(
-        find.textContaining('Barbaros'),
-        findsOneWidget,
-      );
-    });
-
-    testWidgets('Details page shows platform and creation date',
-        (tester) async {
-      await signInAndShowOrders(tester);
-
-      await tester.tap(find.byType(ListTile).first);
-      await pumpAndFlush(tester);
-
+      // 3. Meta info
       expect(find.textContaining('TRENDYOLYEMEK'), findsOneWidget);
+      expect(find.textContaining('10962634803'), findsOneWidget); // ID
     });
   });
+}
+
+/// Helper to allow adding new fields/variants easily in tests
+extension OrderTestExtensions on Order {
+  Order copyWith({String? id, String? orderCardNumber}) {
+    return Order(
+      id: id ?? this.id,
+      storeName: storeName,
+      customer: customer,
+      orderPayment: orderPayment,
+      orderItems: orderItems,
+      delivery: delivery,
+      meta: meta.copyWith(orderCardNumber: orderCardNumber ?? meta.orderCardNumber),
+      totalOrderPrice: totalOrderPrice,
+      currency: currency,
+      integrationOrderId: integrationOrderId,
+      orderCardNumber: orderCardNumber ?? this.orderCardNumber,
+    );
+  }
+}
+
+extension OrderMetaTestExtensions on OrderMeta {
+  OrderMeta copyWith({String? orderCardNumber}) {
+    return OrderMeta(
+      integrationOrderId: integrationOrderId,
+      integrationType: integrationType,
+      platform: platform,
+      creationDate: creationDate,
+      clickingTime: clickingTime,
+      warmthType: warmthType,
+      cookingTime: cookingTime,
+      status: status,
+      orderCardNumber: orderCardNumber ?? this.orderCardNumber,
+    );
+  }
 }

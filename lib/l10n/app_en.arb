@@ -96,5 +96,24 @@
   "associatedKeys": "Associated Restaurant Keys:",
   "noProfileFound": "No restaurant user profile found",
   "paymentAndTotal": "Payment & Total",
-  "metaData": "Metadata"
+  "metaData": "Metadata",
+  "customerDetails": "Customer Details",
+  "phone": "Phone: {phone}",
+  "@phone": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "email": "Email: {email}",
+  "@email": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "orderItems": "Order Items"
 }
+

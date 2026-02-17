@@ -34,5 +34,9 @@
   "associatedKeys": "İlişkili Restoran Anahtarları:",
   "noProfileFound": "Restoran kullanıcı profili bulunamadı",
   "paymentAndTotal": "Ödeme ve Toplam",
-  "metaData": "Üstveri"
+  "metaData": "Üstveri",
+  "customerDetails": "Müşteri Bilgileri",
+  "phone": "Telefon: {phone}",
+  "email": "E-posta: {email}",
+  "orderItems": "Sipariş Ürünleri"
 }
