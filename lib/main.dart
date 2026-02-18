@@ -22,7 +22,13 @@ Future<void> main() async {
       ? firebase_prod.DefaultFirebaseOptions.webClientId
       : firebase_uat.DefaultFirebaseOptions.webClientId;
 
-  await Firebase.initializeApp(options: firebaseOptions);
+  // Guard against duplicate initialization.
+  // In release builds, the google-services plugin auto-initializes Firebase
+  // via a native ContentProvider before Dart starts. Calling initializeApp()
+  // again throws [core/duplicate-app].
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp(options: firebaseOptions);
+  }
   
   // Initialize Google Sign-In v7 (required before usage)
   await GoogleSignIn.instance.initialize(
