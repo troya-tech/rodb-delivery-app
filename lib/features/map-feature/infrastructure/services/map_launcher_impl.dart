@@ -12,15 +12,22 @@ class MapLauncherImpl implements MapLauncher {
     required double longitude,
   }) async {
     final encodedAddress = Uri.encodeComponent(address);
+    final hasCoordinates = latitude != 0.0 || longitude != 0.0;
 
     try {
       if (!kIsWeb && Platform.isAndroid) {
-        // Android: geo: intent with address as query + coordinates as hint.
-        // This lets the default maps app geocode the address text, snapping
-        // to the correct building instead of a raw lat/lng pin.
-        final geoUrl = Uri.parse(
-          'geo:$latitude,$longitude?q=$encodedAddress',
-        );
+        // Android: When we have real coordinates, pin them directly using
+        // the geo:0,0?q=lat,lng(label) format. This places a pin at the
+        // exact coordinate instead of searching by address text (which
+        // can land on the wrong spot for Turkish addresses).
+        // Fall back to address-text search when coordinates are missing.
+        final geoUrl = hasCoordinates
+            ? Uri.parse(
+                'geo:0,0?q=$latitude,$longitude($encodedAddress)',
+              )
+            : Uri.parse(
+                'geo:0,0?q=$encodedAddress',
+              );
 
         if (await canLaunchUrl(geoUrl)) {
           await launchUrl(geoUrl, mode: LaunchMode.externalApplication);
@@ -40,7 +47,6 @@ class MapLauncherImpl implements MapLauncher {
 
       // Fallback (web or if native intents fail): prefer coordinates so the
       // pin lands on the exact spot; fall back to address text.
-      final hasCoordinates = latitude != 0.0 || longitude != 0.0;
       final query = hasCoordinates ? '$latitude,$longitude' : encodedAddress;
       final googleMapsUrl = Uri.parse(
         'https://www.google.com/maps/search/?api=1&query=$query',
