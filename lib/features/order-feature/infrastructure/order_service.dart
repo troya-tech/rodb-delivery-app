@@ -56,6 +56,7 @@ class OrderService implements OrderRepository {
   }
 
   /// Watch orders for specific store IDs
+  @override
   Stream<List<Order>> watchOrdersForStores(List<String> storeIds) {
     if (storeIds.isEmpty) {
       _logger.warning('No store IDs provided to watchOrdersForStores');
@@ -102,6 +103,81 @@ class OrderService implements OrderRepository {
         _logger.error('Error watching store $storeId', error);
       });
       
+      subscriptions.add(subscription);
+    }
+
+    controller.onCancel = () {
+      for (final sub in subscriptions) {
+        sub.cancel();
+      }
+    };
+
+    return controller.stream;
+  }
+
+  @override
+  Stream<List<Order>> watchOrdersForStoresInRange(
+    List<String> storeIds,
+    String startDate,
+    String endDate,
+  ) {
+    if (storeIds.isEmpty) {
+      _logger.warning('No store IDs provided to watchOrdersForStoresInRange');
+      return Stream.value([]);
+    }
+
+    _logger.info(
+      'Watching orders for stores $storeIds in range $startDate → $endDate',
+    );
+
+    final controller = StreamController<List<Order>>();
+    final Map<String, List<Order>> storeOrdersMap = {};
+    final List<StreamSubscription> subscriptions = [];
+
+    for (final storeId in storeIds) {
+      // Firebase RTDB query: only fetch orders within the date range
+      final query = _db
+          .ref('orders/$storeId')
+          .orderByChild('meta/creationDate')
+          .startAt(startDate)
+          .endAt(endDate);
+
+      final subscription = query.onValue.listen((event) {
+        final data = event.snapshot.value as Map<Object?, Object?>?;
+
+        if (data == null) {
+          storeOrdersMap[storeId] = [];
+        } else {
+          final List<Order> orders = [];
+          data.forEach((key, value) {
+            if (value is Map<Object?, Object?>) {
+              try {
+                orders.add(Order.fromMap(key.toString(), value));
+              } catch (e) {
+                _logger.error(
+                  'Error parsing order $key for store $storeId',
+                  e,
+                );
+              }
+            }
+          });
+
+          orders.sort(
+            (a, b) => b.meta.creationDate.compareTo(a.meta.creationDate),
+          );
+          storeOrdersMap[storeId] = orders;
+        }
+
+        final mergedOrders =
+            storeOrdersMap.values.expand((x) => x).toList();
+        mergedOrders.sort(
+          (a, b) => b.meta.creationDate.compareTo(a.meta.creationDate),
+        );
+        controller.add(mergedOrders);
+      }, onError: (error) {
+        _logger.error('Error watching store $storeId in range', error);
+      });
+
       subscriptions.add(subscription);
     }
 

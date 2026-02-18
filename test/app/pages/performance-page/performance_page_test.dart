@@ -32,30 +32,32 @@ void main() {
     await pumpAndFlush(tester);
 
     // Navigate to Performance Page
-    // Assuming we can't easily reach it without shell, let's just push it
-    // Wait, the "App Shell" conversation was listed, but did it finish?
-    // If I can't rely on Shell, I'll use Navigator to push.
-    
-    final context = tester.element(find.byType(Scaffold).last); // Finds login or orders page scaffold
+    final context = tester.element(find.byType(Scaffold).last);
     Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => const PerformancePage()),
     );
     await pumpAndFlush(tester);
 
     // Verify Title
-    expect(find.text('Performans'), findsOneWidget); // Or whatever localization says
+    expect(find.text('Performans'), findsOneWidget);
     // Verify Stats are 0
     expect(find.text('Total Deliveries'), findsOneWidget);
     expect(find.text('0'), findsOneWidget);
     expect(find.text('Total Earnings'), findsOneWidget);
-    expect(find.text('0.00 ₺'), findsOneWidget); // Total Earnings is 0.00
+    expect(find.text('0.00 ₺'), findsOneWidget);
   });
 
-  testWidgets('PerformancePage shows correct stats for delivered orders', (tester) async {
-    // Add a delivered order
+  testWidgets('PerformancePage shows correct stats for delivered orders in shift range', (tester) async {
+    // Add a delivered order with a creation date in today's shift range
+    final now = DateTime.now();
+    final todayShiftDate = '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}T20:00:00.000Z';
+    
     final deliveredOrder = OrderFixtures.testOrder1.copyWith(
       id: 'delivered-1',
-      meta: OrderFixtures.testOrder1.meta.copyWith(isDelivered: true),
+      meta: OrderFixtures.testOrder1.meta.copyWith(
+        isDelivered: true,
+        creationDate: todayShiftDate,
+      ),
       totalOrderPrice: 100.0,
     );
     
@@ -77,10 +79,29 @@ void main() {
     await pumpAndFlush(tester);
 
     // Verify Stats
-    // 1 delivered order, 100.0 price
     expect(find.text('1'), findsOneWidget); // Total Deliveries
-    
+
     // Total Earnings should be 50.00 ₺ (1 * 50)
     expect(find.text('50.00 ₺'), findsOneWidget); 
+  });
+
+  testWidgets('PerformancePage shows shift navigation bar', (tester) async {
+    await tester.pumpWidget(harness.buildApp());
+    await pumpAndFlush(tester);
+    await tester.tap(find.text('Google ile giriş yap'));
+    await pumpAndFlush(tester);
+
+    final context = tester.element(find.byType(Scaffold).last);
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const PerformancePage()),
+    );
+    await pumpAndFlush(tester);
+
+    // Verify navigation buttons exist
+    expect(find.byIcon(Icons.chevron_left), findsOneWidget);
+    expect(find.byIcon(Icons.chevron_right), findsOneWidget);
+    
+    // Verify settings button exists
+    expect(find.byIcon(Icons.settings), findsOneWidget);
   });
 }

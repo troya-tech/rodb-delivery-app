@@ -134,6 +134,24 @@ class FakeOrderRepository implements OrderRepository {
     _emitMerged();
   }
 
+  @override
+  Stream<List<Order>> watchOrdersForStoresInRange(
+    List<String> storeIds,
+    String startDate,
+    String endDate,
+  ) {
+    return _ordersSubject.stream.map((allOrders) {
+      if (storeIds.isEmpty) return <Order>[];
+      return allOrders
+          .where((order) =>
+              storeIds
+                  .any((id) => _ordersByStore[id]?.contains(order) == true) &&
+              order.meta.creationDate.compareTo(startDate) >= 0 &&
+              order.meta.creationDate.compareTo(endDate) <= 0)
+          .toList();
+    });
+  }
+
   /// Clean up the stream controller.
   void dispose() {
     _ordersSubject.close();
